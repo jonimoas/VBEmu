@@ -22,106 +22,106 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.genre = New System.Windows.Forms.Label()
-        Me.developer = New System.Windows.Forms.Label()
-        Me.cover = New System.Windows.Forms.PictureBox()
+        Me.gameBox = New System.Windows.Forms.ListBox()
         Me.description = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.systemBox = New System.Windows.Forms.ListBox()
+        Me.genreBox = New System.Windows.Forms.ComboBox()
+        Me.devBox = New System.Windows.Forms.ComboBox()
+        Me.cover = New System.Windows.Forms.PictureBox()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         CType(Me.cover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'ListBox1
+        'gameBox
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(2, 133)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(249, 394)
-        Me.ListBox1.TabIndex = 0
-        '
-        'genre
-        '
-        Me.genre.AutoSize = True
-        Me.genre.Location = New System.Drawing.Point(269, 16)
-        Me.genre.Name = "genre"
-        Me.genre.Size = New System.Drawing.Size(34, 13)
-        Me.genre.TabIndex = 1
-        Me.genre.Text = "genre"
-        '
-        'developer
-        '
-        Me.developer.AutoSize = True
-        Me.developer.Location = New System.Drawing.Point(269, 3)
-        Me.developer.Name = "developer"
-        Me.developer.Size = New System.Drawing.Size(54, 13)
-        Me.developer.TabIndex = 3
-        Me.developer.Text = "developer"
-        '
-        'cover
-        '
-        Me.cover.Location = New System.Drawing.Point(302, 48)
-        Me.cover.Name = "cover"
-        Me.cover.Size = New System.Drawing.Size(189, 192)
-        Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.cover.TabIndex = 4
-        Me.cover.TabStop = False
+        Me.gameBox.FormattingEnabled = True
+        Me.gameBox.Location = New System.Drawing.Point(2, 144)
+        Me.gameBox.Name = "gameBox"
+        Me.gameBox.Size = New System.Drawing.Size(346, 381)
+        Me.gameBox.Sorted = True
+        Me.gameBox.TabIndex = 0
         '
         'description
         '
-        Me.description.Location = New System.Drawing.Point(272, 267)
+        Me.description.Location = New System.Drawing.Point(354, 270)
         Me.description.Multiline = True
         Me.description.Name = "description"
         Me.description.ReadOnly = True
         Me.description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.description.Size = New System.Drawing.Size(247, 255)
+        Me.description.Size = New System.Drawing.Size(233, 255)
         Me.description.TabIndex = 5
         '
-        'Button1
+        'systemBox
         '
-        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(471, 5)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(48, 34)
-        Me.Button1.TabIndex = 6
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.systemBox.FormattingEnabled = True
+        Me.systemBox.Location = New System.Drawing.Point(2, 8)
+        Me.systemBox.Name = "systemBox"
+        Me.systemBox.Size = New System.Drawing.Size(346, 134)
+        Me.systemBox.TabIndex = 7
         '
-        'ListBox2
+        'genreBox
         '
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(2, 8)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(248, 108)
-        Me.ListBox2.TabIndex = 7
+        Me.genreBox.FormattingEnabled = True
+        Me.genreBox.Location = New System.Drawing.Point(354, 1)
+        Me.genreBox.Name = "genreBox"
+        Me.genreBox.Size = New System.Drawing.Size(187, 21)
+        Me.genreBox.TabIndex = 8
+        '
+        'devBox
+        '
+        Me.devBox.FormattingEnabled = True
+        Me.devBox.Location = New System.Drawing.Point(354, 31)
+        Me.devBox.Name = "devBox"
+        Me.devBox.Size = New System.Drawing.Size(187, 21)
+        Me.devBox.TabIndex = 9
+        '
+        'cover
+        '
+        Me.cover.ErrorImage = Global.VBEmu.My.Resources.Resources.gamepadpic
+        Me.cover.Location = New System.Drawing.Point(354, 58)
+        Me.cover.Name = "cover"
+        Me.cover.Size = New System.Drawing.Size(220, 206)
+        Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.cover.TabIndex = 4
+        Me.cover.TabStop = False
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(2, 531)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(599, 23)
+        Me.ProgressBar1.Step = 1
+        Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.ProgressBar1.TabIndex = 10
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(531, 534)
-        Me.ControlBox = False
-        Me.Controls.Add(Me.ListBox2)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(604, 566)
+        Me.Controls.Add(Me.ProgressBar1)
+        Me.Controls.Add(Me.devBox)
+        Me.Controls.Add(Me.genreBox)
+        Me.Controls.Add(Me.systemBox)
         Me.Controls.Add(Me.description)
         Me.Controls.Add(Me.cover)
-        Me.Controls.Add(Me.developer)
-        Me.Controls.Add(Me.genre)
-        Me.Controls.Add(Me.ListBox1)
+        Me.Controls.Add(Me.gameBox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Main"
-        Me.Text = "Atari"
+        Me.Text = "VBEmu"
         CType(Me.cover, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
-    Friend WithEvents genre As System.Windows.Forms.Label
-    Friend WithEvents developer As System.Windows.Forms.Label
+    Friend WithEvents gameBox As System.Windows.Forms.ListBox
     Friend WithEvents cover As System.Windows.Forms.PictureBox
     Friend WithEvents description As System.Windows.Forms.TextBox
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents ListBox2 As System.Windows.Forms.ListBox
+    Friend WithEvents systemBox As System.Windows.Forms.ListBox
+    Friend WithEvents genreBox As System.Windows.Forms.ComboBox
+    Friend WithEvents devBox As System.Windows.Forms.ComboBox
+    Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
 
 End Class

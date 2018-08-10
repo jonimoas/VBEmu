@@ -1,60 +1,131 @@
-﻿Public Class Main
-    Dim gamelist As Collection
+﻿Imports System.Collections.Specialized
+
+Public Class Main
+    Dim gamelist
     Dim folder As String
     Dim consolelist As Collection
     Dim gamelistavailable As Boolean
+    Dim selectedgame As Game
+    Dim genrelist
+    Dim developerlist
+    Dim filteredgames
+    Dim genrefilter As Boolean
+    Dim developerfilter As Boolean
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         folder = "c:\users\moas\es_systems.cfg"
         consolelist = XML.readGamesystem(folder)
         For Each c In consolelist
-            ListBox2.Items.Add(c.getfullName())
+            systemBox.Items.Add(c.getfullName())
         Next
-        ListBox2.SelectedIndex = 0
-        reloadGames(consolelist.Item(1).getPath())
+        systemBox.SelectedIndex = 0
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gameBox.SelectedIndexChanged
         If gamelistavailable Then
-            genre.Text = gamelist.Item(ListBox1.SelectedIndex + 1).getGenre()
-            developer.Text = gamelist.Item(ListBox1.SelectedIndex + 1).getDeveloper()
-            cover.ImageLocation = consolelist.Item(ListBox2.SelectedIndex + 1).getPath() + gamelist.Item(ListBox1.SelectedIndex + 1).getImage()
-            description.Text = gamelist.Item(ListBox1.SelectedIndex + 1).getDescription()
+            For Each g In gamelist
+                If gameBox.SelectedItem = g.getName() Then
+                    selectedgame = g
+                    Me.Text = "(" + systemBox.SelectedItem + ") " + g.getName() + " (" + g.getDeveloper + ") " + g.getGenre
+                    cover.ImageLocation = consolelist.Item(systemBox.SelectedIndex + 1).getPath() + g.getImage()
+                    description.Text = g.getDescription()
+                End If
+            Next
         Else
-            genre.Text = vbNullString
-            developer.Text = vbNullString
             description.Text = vbNullString
             cover.Image = cover.ErrorImage
         End If
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         End
     End Sub
 
     Private Sub reloadGames(ByVal romdir)
-        ListBox1.Items.Clear()
+        genreBox.Enabled = True
+        devBox.Enabled = True
+        gameBox.Items.Clear()
+        gamelist = New Collection
+        genrelist = New StringCollection()
+        developerlist = New StringCollection()
+        genrelist.Add("All")
+        developerlist.Add("All")
         If System.IO.File.Exists(romdir + "\gamelist.xml") Then
-            ListBox1.Items.Clear()
-            gamelist = XML.readGame(romdir + "\gamelist.xml")
+            gamelist = XML.readGame(romdir + "\gamelist.xml", consolelist.Item(systemBox.SelectedIndex + 1))
             For Each g In gamelist
-                ListBox1.Items.Add(g.getName())
+                If g.getGenre().trim <> "" And Not genrelist.Contains(g.getGenre().trim) Then
+                    genrelist.Add(g.getGenre().trim)
+                End If
+                If g.getDeveloper().trim <> "" And Not developerlist.Contains(g.getDeveloper().trim) Then
+                    developerlist.Add(g.getDeveloper())
+                End If
+                gameBox.Items.Add(g.getName())
+                ProgressBar1.PerformStep()
             Next
-            ListBox1.SelectedIndex = 0
+            genreBox.DataSource = genrelist
+            devBox.DataSource = developerlist
             gamelistavailable = True
+            filteredgames = gamelist
+            gameBox.SelectedIndex = 0
+            ProgressBar1.Value = ProgressBar1.Maximum
         Else
+            genreBox.Enabled = False
+            devBox.Enabled = False
             Dim files() As String = IO.Directory.GetFiles(romdir)
             For Each file As String In files
-                ListBox1.Items.Add(IO.Path.GetFileName(file))
+                gameBox.Items.Add(IO.Path.GetFileName(file))
             Next
             gamelistavailable = False
+            Me.Text = systemBox.SelectedItem
         End If
     End Sub
 
-    Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
-        reloadGames(consolelist.Item(ListBox2.SelectedIndex + 1).getPath())
+    Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles systemBox.SelectedIndexChanged
+        reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())
     End Sub
 
-    Private Sub ListBox1_DoubleClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
-        consolelist.Item(ListBox2.SelectedIndex + 1).run(gamelist.Item(ListBox1.SelectedIndex + 1).getpath())
+    Private Sub ListBox1_DoubleClick(sender As Object, e As EventArgs) Handles gameBox.DoubleClick
+        consolelist.Item(systemBox.SelectedIndex + 1).run(selectedgame.getpath())
+    End Sub
+
+    Private Sub filter(ByVal genref, ByVal developerf)
+        If gamelistavailable Then
+            gameBox.Items.Clear()
+            filteredgames = New Collection
+            If genreBox.SelectedItem <> "All" And devBox.SelectedItem <> "All" Then
+                For Each g In gamelist
+                    If g.getGenre().trim = genref.trim And g.getDeveloper().trim = developerf.trim Then
+                        filteredgames.add(g)
+                    End If
+                Next
+            ElseIf genreBox.SelectedItem <> "All" Then
+                For Each g In gamelist
+                    If g.getGenre().trim = genref.trim Then
+                        filteredgames.add(g)
+                    End If
+                Next
+            ElseIf devBox.SelectedItem <> "All" Then
+                For Each g In gamelist
+                    If g.getDeveloper().trim = developerf.trim Then
+                        filteredgames.add(g)
+                    End If
+                Next
+            Else
+                filteredgames = gamelist
+            End If
+            For Each g In filteredgames
+                gameBox.Items.Add(g.getName())
+            Next
+        End If
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles genreBox.SelectedIndexChanged
+        filteredgames = New Collection
+        filter(genreBox.SelectedItem.trim, devBox.SelectedItem.trim)
+    End Sub
+
+    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles devBox.SelectedIndexChanged
+        filteredgames = New Collection
+        filter(genreBox.SelectedItem.trim, devBox.SelectedItem.trim)
     End Sub
 End Class

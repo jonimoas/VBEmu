@@ -27,7 +27,6 @@
     Public Sub run(game)
         Dim torun = command.Replace("%ROM%", Chr(34) + path + "\" + game + Chr(34)).Replace("\.", "").Replace("/", "\").Replace(" &", "&").Replace("\Q", "/Q").Replace("\F", "/F")
         IO.File.WriteAllText("run.bat", torun)
-        MsgBox(torun)
         Clipboard.SetText(torun)
         Process.Start("run.bat")
     End Sub

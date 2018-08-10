@@ -53,6 +53,18 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+
+        <Global.System.Configuration.UserScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("")> _
+        Public Property es_settings_loc() As String
+            Get
+                Return CType(Me("es_settings_loc"), String)
+            End Get
+            Set(value As String)
+                Me("es_settings_loc") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

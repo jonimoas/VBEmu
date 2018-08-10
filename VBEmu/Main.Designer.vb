@@ -29,6 +29,7 @@ Partial Class Main
         Me.devBox = New System.Windows.Forms.ComboBox()
         Me.cover = New System.Windows.Forms.PictureBox()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         CType(Me.cover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -43,12 +44,12 @@ Partial Class Main
         '
         'description
         '
-        Me.description.Location = New System.Drawing.Point(354, 270)
+        Me.description.Location = New System.Drawing.Point(354, 284)
         Me.description.Multiline = True
         Me.description.Name = "description"
         Me.description.ReadOnly = True
         Me.description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.description.Size = New System.Drawing.Size(233, 255)
+        Me.description.Size = New System.Drawing.Size(233, 241)
         Me.description.TabIndex = 5
         '
         'systemBox
@@ -64,7 +65,7 @@ Partial Class Main
         Me.genreBox.FormattingEnabled = True
         Me.genreBox.Location = New System.Drawing.Point(354, 1)
         Me.genreBox.Name = "genreBox"
-        Me.genreBox.Size = New System.Drawing.Size(187, 21)
+        Me.genreBox.Size = New System.Drawing.Size(233, 21)
         Me.genreBox.TabIndex = 8
         '
         'devBox
@@ -72,7 +73,7 @@ Partial Class Main
         Me.devBox.FormattingEnabled = True
         Me.devBox.Location = New System.Drawing.Point(354, 31)
         Me.devBox.Name = "devBox"
-        Me.devBox.Size = New System.Drawing.Size(187, 21)
+        Me.devBox.Size = New System.Drawing.Size(233, 21)
         Me.devBox.TabIndex = 9
         '
         'cover
@@ -80,7 +81,7 @@ Partial Class Main
         Me.cover.ErrorImage = Global.VBEmu.My.Resources.Resources.gamepadpic
         Me.cover.Location = New System.Drawing.Point(354, 58)
         Me.cover.Name = "cover"
-        Me.cover.Size = New System.Drawing.Size(220, 206)
+        Me.cover.Size = New System.Drawing.Size(233, 220)
         Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.cover.TabIndex = 4
         Me.cover.TabStop = False
@@ -93,6 +94,10 @@ Partial Class Main
         Me.ProgressBar1.Step = 1
         Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.ProgressBar1.TabIndex = 10
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
         'Main
         '
@@ -123,5 +128,6 @@ Partial Class Main
     Friend WithEvents genreBox As System.Windows.Forms.ComboBox
     Friend WithEvents devBox As System.Windows.Forms.ComboBox
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+    Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
 
 End Class

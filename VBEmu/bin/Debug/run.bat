@@ -1,1 +1,1 @@
-E:\CONSOLES\EMUS\vba\VisualBoyAdvance.exe "k:\gba\Ace Lightning.zip" "k:\gba\Ace Lightning.zip"
+E:\CONSOLES\EMUS\regen\Regen.exe "k:\gamegear\Arch Rivals.gg"

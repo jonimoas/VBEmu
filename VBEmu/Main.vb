@@ -11,9 +11,16 @@ Public Class Main
     Dim filteredgames
     Dim genrefilter As Boolean
     Dim developerfilter As Boolean
+    Dim firstrun
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        folder = "c:\users\moas\es_systems.cfg"
+        If My.Settings.es_settings_loc = "" Then
+            OpenFileDialog1.ShowDialog()
+            folder = OpenFileDialog1.FileName
+            My.Settings.es_settings_loc = OpenFileDialog1.FileName
+        Else
+            folder = My.Settings.es_settings_loc
+        End If
         consolelist = XML.readGamesystem(folder)
         For Each c In consolelist
             systemBox.Items.Add(c.getfullName())

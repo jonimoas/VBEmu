@@ -1,0 +1,1 @@
+c:\apps\7z e "k:\ps1\Crash Bash (USA).7z" -oc:\emu\temp&& rename c:\emu\temp\*.cue g.cue&& E:\CONSOLES\EMUS\mednafen\mednafen.exe c:\emu\temp\g.cue&& del c:\emu\temp\* /Q /F

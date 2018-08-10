@@ -1,0 +1,57 @@
+
+
+
+-----------------------------Gamelist sample (created ftom sselph's scraper)
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <gameList>
+      <game id="26762" source="theGamesDB.net">
+          <path>./After Burner Complete ~ After Burner (Japan, USA).zip</path>
+          <name>After Burner Complete ~ After Burner (Japan, USA)</name>
+          <desc>The game allows the player to control a F-14 Tomcat jet, which must destroy a series of enemy jets throughout 18 stages. At the start of the game, the player takes off from an aircraft carrier called the SEGA Enterprise, which shares a similar name to the one used in the 1986 film Top Gun.</desc>
+          <image>./images/After Burner Complete ~ After Burner (Japan, USA)-image.jpg</image>
+          <rating>0.7</rating>
+          <releasedate>19950113T000000</releasedate>
+          <developer>Sega</developer>
+          <publisher>Sega</publisher>
+          <genre>Action</genre>
+          <players>1</players>
+      </game>
+	</gameList>
+	
+	
+	--------------------es_systems.cfg sample (works with emulationstation too)
+	
+	
+<!-- This is the EmulationStation Systems configuration file.
+All systems must be contained within the <systemList> tag.-->
+
+<systemList>
+
+	<system>
+		<name>nes</name>
+		<fullname>Nintendo Entertainment System</fullname>
+		<path>k:\nes</path>
+		<extension>.zip</extension>
+		<command>E:\CONSOLES\EMUS\nes\nestopia.exe %ROM%</command>
+		<platform>nes</platform>
+		<theme>nes</theme>
+	</system>
+	
+</systemList>
+
+----------------------filesystem sample
+
+	k:\nes\romname.zip
+	k:\nes\gamelist.xml
+	k:\nes\images\romimage.jpeg
+	
+	
+-------notes
+
+if you run sselph's scraper in your rom folder without any arguments, the files will be automatically created as needed by this project
+just use -mame for mame mode naming
+
+you don't need to hardcode your rom folders, they will be detected automatically from the es_systems file. The only hardcoded address for now
+is the location of the es_systems file

@@ -8,3 +8,5 @@ C:\Users\moas\documents\visual studio 2013\Projects\VBEmu\VBEmu\obj\Release\VBEm
 C:\Users\moas\documents\visual studio 2013\Projects\VBEmu\VBEmu\obj\Release\VBEmu.exe
 C:\Users\moas\documents\visual studio 2013\Projects\VBEmu\VBEmu\obj\Release\VBEmu.xml
 C:\Users\moas\documents\visual studio 2013\Projects\VBEmu\VBEmu\obj\Release\VBEmu.pdb
+C:\Users\moas\documents\visual studio 2013\Projects\VBEmu\VBEmu\obj\Release\VBEmu.vbprojResolveAssemblyReference.cache
+C:\Users\moas\documents\visual studio 2013\Projects\VBEmu\VBEmu\obj\Release\VBEmu.Splash.resources

@@ -84,6 +84,8 @@ Public Class Main
             Next
             gamelistavailable = False
             Me.Text = systemBox.SelectedItem
+            cover.ImageLocation = vbNull
+            description.Text = ""
         End If
     End Sub
 

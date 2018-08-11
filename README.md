@@ -1,5 +1,5 @@
 # VBEmu
-Simple emulator frontend using the backend of EmulationStation
+Simple emulator frontend using the backend of EmulationStation focused on simplicity and speed. Good for users with huge collections 
 
 USAGE:
 

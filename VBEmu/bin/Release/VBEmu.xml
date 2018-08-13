@@ -15,7 +15,7 @@ VBEmu
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
-</member><member name="P:VBEmu.My.Resources.Resources.gamepadpic">
+</member><member name="P:VBEmu.My.Resources.Resources.Controller">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

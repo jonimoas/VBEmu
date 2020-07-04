@@ -22,4 +22,4 @@ you can also use the save function to create a script and simply double click on
 
 still a WIP obviously
 
-
+![Screenshot](/screenshot.png)

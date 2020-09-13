@@ -1,1 +1,0 @@
-E:\CONSOLES\EMUS\regen\Regen.exe "k:\gamegear\Arch Rivals.gg"

@@ -1,0 +1,6 @@
+VBEmu\bin
+VBEmu\obj
+*.user
+*.suo
+_ReSharper.*
+*.sln.cache

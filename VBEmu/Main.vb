@@ -15,8 +15,24 @@ Public Class Main
     Dim developerfilter As Boolean
     Dim firstrun
     Dim t As Thread
+    Private Function updateColors()
+        systemBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        gameBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        description.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        Me.BackColor = ColorTranslator.FromHtml("#080708")
+        save.BackColor = ColorTranslator.FromHtml("#FDCA40")
+        quit.BackColor = ColorTranslator.FromHtml("#DF2935")
+        save.ForeColor = ColorTranslator.FromHtml("#080708")
+        genreBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        devBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        ProgressBar1.ForeColor = ColorTranslator.FromHtml("#0066CC")
+        ProgressBar1.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        cover.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        Return 0
+    End Function
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        updateColors()
         If My.Settings.es_settings_loc = "" Then
             openSystemsCfg.ShowDialog()
             folder = openSystemsCfg.FileName
@@ -33,6 +49,7 @@ Public Class Main
             systemBox.Items.Add(c.getfullName())
         Next
         systemBox.SelectedIndex = 0
+        CenterForm(Me)
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gameBox.SelectedIndexChanged
@@ -49,12 +66,11 @@ Public Class Main
             cover.Image = cover.ErrorImage
         End If
         If description.Text = "" Then
-            description.BackColor = Color.Black
             description.ScrollBars = ScrollBars.None
         Else
-            description.BackColor = Color.Beige
             description.ScrollBars = ScrollBars.Vertical
         End If
+        updateColors()
     End Sub
 
     Private Sub reloadGames(ByVal romdir)
@@ -77,8 +93,9 @@ Public Class Main
 
     Private Sub filter(ByVal genref, ByVal developerf)
         If gamelistavailable Then
-            gameBox.Items.Clear()
+            gameControlList.Clear()
             filteredgames = New Collection
+            gameControlList = New Collection
             If genreBox.SelectedItem <> "All" And devBox.SelectedItem <> "All" Then
                 For Each g In gamelist
                     If g.getGenre().trim = genref.trim And g.getDeveloper().trim = developerf.trim Then
@@ -101,8 +118,9 @@ Public Class Main
                 filteredgames = gamelist
             End If
             For Each g In filteredgames
-                gameBox.Items.Add(g.getName())
+                gameControlList.Add(g.getName())
             Next
+            gameBox.DataSource = gameControlList
         End If
     End Sub
 
@@ -265,4 +283,18 @@ Public Class Main
         End If
         Return 0
     End Function
+
+    Public Shared Sub CenterForm(ByVal frm As Form, Optional ByVal parent As Form = Nothing)
+        '' Note: call this from frm's Load event!
+        Dim r As Rectangle
+        If parent IsNot Nothing Then
+            r = parent.RectangleToScreen(parent.ClientRectangle)
+        Else
+            r = Screen.FromPoint(frm.Location).WorkingArea
+        End If
+
+        Dim x = r.Left + (r.Width - frm.Width) \ 2
+        Dim y = r.Top + (r.Height - frm.Height) \ 2
+        frm.Location = New Point(x, y)
+    End Sub
 End Class

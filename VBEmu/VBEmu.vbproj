@@ -158,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Controller.jpg" />
+    <None Include="Resources\Controller.bmp" />
+    <None Include="Resources\Controller.png" />
     <Content Include="Treetog-I-Games.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

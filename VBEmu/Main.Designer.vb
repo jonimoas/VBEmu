@@ -50,7 +50,7 @@ Partial Class Main
         'description
         '
         Me.description.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.description.Location = New System.Drawing.Point(353, 278)
+        Me.description.Location = New System.Drawing.Point(389, 278)
         Me.description.Multiline = True
         Me.description.Name = "description"
         Me.description.ReadOnly = True
@@ -60,7 +60,7 @@ Partial Class Main
         '
         'systemBox
         '
-        Me.systemBox.BackColor = System.Drawing.Color.Beige
+        Me.systemBox.BackColor = System.Drawing.Color.White
         Me.systemBox.FormattingEnabled = True
         Me.systemBox.Location = New System.Drawing.Point(1, 2)
         Me.systemBox.Name = "systemBox"
@@ -72,7 +72,7 @@ Partial Class Main
         Me.genreBox.BackColor = System.Drawing.Color.Beige
         Me.genreBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.genreBox.FormattingEnabled = True
-        Me.genreBox.Location = New System.Drawing.Point(353, 2)
+        Me.genreBox.Location = New System.Drawing.Point(389, 2)
         Me.genreBox.Name = "genreBox"
         Me.genreBox.Size = New System.Drawing.Size(233, 21)
         Me.genreBox.TabIndex = 8
@@ -82,7 +82,7 @@ Partial Class Main
         Me.devBox.BackColor = System.Drawing.Color.Beige
         Me.devBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.devBox.FormattingEnabled = True
-        Me.devBox.Location = New System.Drawing.Point(353, 25)
+        Me.devBox.Location = New System.Drawing.Point(389, 25)
         Me.devBox.Name = "devBox"
         Me.devBox.Size = New System.Drawing.Size(233, 21)
         Me.devBox.TabIndex = 9
@@ -106,7 +106,7 @@ Partial Class Main
         'save
         '
         Me.save.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.save.Location = New System.Drawing.Point(353, 526)
+        Me.save.Location = New System.Drawing.Point(389, 526)
         Me.save.Name = "save"
         Me.save.Size = New System.Drawing.Size(110, 22)
         Me.save.TabIndex = 11
@@ -116,7 +116,7 @@ Partial Class Main
         'quit
         '
         Me.quit.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.quit.Location = New System.Drawing.Point(476, 526)
+        Me.quit.Location = New System.Drawing.Point(512, 526)
         Me.quit.Name = "quit"
         Me.quit.Size = New System.Drawing.Size(110, 22)
         Me.quit.TabIndex = 12
@@ -131,7 +131,9 @@ Partial Class Main
         Me.cover.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.cover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.cover.ErrorImage = Global.VBEmu.My.Resources.Resources.Controller
-        Me.cover.Location = New System.Drawing.Point(353, 52)
+        Me.cover.Image = Global.VBEmu.My.Resources.Resources.Controller
+        Me.cover.InitialImage = Global.VBEmu.My.Resources.Resources.Controller
+        Me.cover.Location = New System.Drawing.Point(389, 52)
         Me.cover.Name = "cover"
         Me.cover.Size = New System.Drawing.Size(233, 220)
         Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -147,7 +149,7 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.ClientSize = New System.Drawing.Size(588, 550)
+        Me.ClientSize = New System.Drawing.Size(634, 550)
         Me.ControlBox = False
         Me.Controls.Add(Me.quit)
         Me.Controls.Add(Me.save)

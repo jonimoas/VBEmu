@@ -22,6 +22,7 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.gameBox = New System.Windows.Forms.ListBox()
         Me.description = New System.Windows.Forms.TextBox()
         Me.systemBox = New System.Windows.Forms.ListBox()
@@ -130,9 +131,9 @@ Partial Class Main
         '
         Me.cover.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.cover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.cover.ErrorImage = Global.VBEmu.My.Resources.Resources.Controller
-        Me.cover.Image = Global.VBEmu.My.Resources.Resources.Controller
-        Me.cover.InitialImage = Global.VBEmu.My.Resources.Resources.Controller
+        Me.cover.ErrorImage = CType(resources.GetObject("cover.ErrorImage"), System.Drawing.Image)
+        Me.cover.Image = CType(resources.GetObject("cover.Image"), System.Drawing.Image)
+        Me.cover.InitialImage = CType(resources.GetObject("cover.InitialImage"), System.Drawing.Image)
         Me.cover.Location = New System.Drawing.Point(389, 52)
         Me.cover.Name = "cover"
         Me.cover.Size = New System.Drawing.Size(233, 220)
@@ -164,6 +165,8 @@ Partial Class Main
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Main"
+        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         CType(Me.cover, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

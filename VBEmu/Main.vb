@@ -49,7 +49,7 @@ Public Class Main
             systemBox.Items.Add(c.getfullName())
         Next
         systemBox.SelectedIndex = 0
-        CenterForm(Me)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gameBox.SelectedIndexChanged
@@ -62,8 +62,14 @@ Public Class Main
                 End If
             Next
         Else
+            For Each g In gamelist
+                If gameBox.SelectedItem = g.getName() Then
+                    selectedgame = g
+                End If
+            Next
             description.Text = vbNullString
-            cover.Image = cover.ErrorImage
+
+                    cover.Image = cover.ErrorImage
         End If
         If description.Text = "" Then
             description.ScrollBars = ScrollBars.None
@@ -266,9 +272,11 @@ Public Class Main
                                         devBox.Enabled = False
                                     End Sub)
             Dim files() As String = IO.Directory.GetFiles(romdir)
+            Dim id = 1
             For Each file As String In files
-
                 gameControlList.Add(IO.Path.GetFileName(file))
+                gamelist.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
+                id = id + 1
             Next
             gamelistavailable = False
             cover.InvokeIfRequired(Sub()

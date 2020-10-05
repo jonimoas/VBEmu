@@ -17,8 +17,8 @@ Module XML
             Do
             reader.ReadToFollowing("path")
             Dim path = reader.ReadInnerXml()
-                gamelistpaths.Add(path.Remove(0, 2).Trim)
-                reader.ReadToFollowing("name")
+            gamelistpaths.Add(path.Remove(0, 2).Trim)
+            reader.ReadToFollowing("name")
                 Dim name = reader.ReadInnerXml()
                 reader.ReadToFollowing("desc")
                 Dim desc = reader.ReadInnerXml()
@@ -27,10 +27,15 @@ Module XML
                 reader.ReadToFollowing("developer")
                 Dim developer = reader.ReadInnerXml()
                 reader.ReadToFollowing("genre")
-                Dim genre = reader.ReadInnerXml()
-            If Not name = "" Then
-                games.Add(New Game(path, name, image, genre, developer, desc, id))
+            Dim genre = reader.ReadInnerXml()
+
+            If files.Contains(System.IO.Directory.GetParent(filename).ToString + "\" + path.Remove(0, 2).Trim) Then
+
+                If Not name = "" Then
+                    games.Add(New Game(path, name, image, genre, developer, desc, id))
+                End If
             End If
+
             Main.ProgressBar1.PerformStep()
         Loop While Not reader.EOF
             id = id + 1
@@ -53,6 +58,7 @@ Module XML
             id = id + 1
             Main.ProgressBar1.PerformStep()
         Next
+        MsgBox(games.Count)
         Return games
     End Function
     Function readGamesystem(ByVal filename)

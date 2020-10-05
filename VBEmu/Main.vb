@@ -155,7 +155,11 @@ Public Class Main
     End Sub
 
     Private Sub SaveFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles saveScript.FileOk
-        IO.File.WriteAllText(saveScript.FileName, consolelist.Item(systemBox.SelectedIndex + 1).makeScript(selectedgame.getpath()))
+        Try
+            IO.File.WriteAllText(saveScript.FileName, consolelist.Item(systemBox.SelectedIndex + 1).makeScript(selectedgame.getpath()))
+        Catch
+            Return
+        End Try
     End Sub
 
     Private Sub quit_Click(sender As Object, e As EventArgs) Handles quit.Click

@@ -41,61 +41,68 @@ Partial Class Main
         'gameBox
         '
         Me.gameBox.BackColor = System.Drawing.Color.Beige
+        Me.gameBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.gameBox.FormattingEnabled = True
+        Me.gameBox.ItemHeight = 20
         Me.gameBox.Location = New System.Drawing.Point(1, 138)
         Me.gameBox.Name = "gameBox"
-        Me.gameBox.Size = New System.Drawing.Size(346, 381)
+        Me.gameBox.Size = New System.Drawing.Size(346, 364)
         Me.gameBox.Sorted = True
         Me.gameBox.TabIndex = 0
         '
         'description
         '
         Me.description.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.description.Location = New System.Drawing.Point(389, 278)
+        Me.description.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.description.Location = New System.Drawing.Point(389, 296)
         Me.description.Multiline = True
         Me.description.Name = "description"
         Me.description.ReadOnly = True
         Me.description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.description.Size = New System.Drawing.Size(233, 241)
+        Me.description.Size = New System.Drawing.Size(233, 206)
         Me.description.TabIndex = 5
         '
         'systemBox
         '
         Me.systemBox.BackColor = System.Drawing.Color.White
+        Me.systemBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.systemBox.FormattingEnabled = True
+        Me.systemBox.ItemHeight = 20
         Me.systemBox.Location = New System.Drawing.Point(1, 2)
         Me.systemBox.Name = "systemBox"
-        Me.systemBox.Size = New System.Drawing.Size(346, 134)
+        Me.systemBox.Size = New System.Drawing.Size(346, 124)
         Me.systemBox.TabIndex = 7
         '
         'genreBox
         '
         Me.genreBox.BackColor = System.Drawing.Color.Beige
         Me.genreBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.genreBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.genreBox.FormattingEnabled = True
         Me.genreBox.Location = New System.Drawing.Point(389, 2)
         Me.genreBox.Name = "genreBox"
-        Me.genreBox.Size = New System.Drawing.Size(233, 21)
+        Me.genreBox.Size = New System.Drawing.Size(233, 28)
         Me.genreBox.TabIndex = 8
         '
         'devBox
         '
         Me.devBox.BackColor = System.Drawing.Color.Beige
         Me.devBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.devBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.devBox.FormattingEnabled = True
-        Me.devBox.Location = New System.Drawing.Point(389, 25)
+        Me.devBox.Location = New System.Drawing.Point(389, 36)
         Me.devBox.Name = "devBox"
-        Me.devBox.Size = New System.Drawing.Size(233, 21)
+        Me.devBox.Size = New System.Drawing.Size(233, 28)
         Me.devBox.TabIndex = 9
         '
         'ProgressBar1
         '
         Me.ProgressBar1.BackColor = System.Drawing.Color.Beige
         Me.ProgressBar1.ForeColor = System.Drawing.Color.Black
-        Me.ProgressBar1.Location = New System.Drawing.Point(1, 525)
+        Me.ProgressBar1.Location = New System.Drawing.Point(1, 508)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ProgressBar1.Size = New System.Drawing.Size(346, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(346, 40)
         Me.ProgressBar1.Step = 1
         Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.ProgressBar1.TabIndex = 10
@@ -106,20 +113,22 @@ Partial Class Main
         '
         'save
         '
+        Me.save.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.save.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.save.Location = New System.Drawing.Point(389, 526)
+        Me.save.Location = New System.Drawing.Point(389, 508)
         Me.save.Name = "save"
-        Me.save.Size = New System.Drawing.Size(110, 22)
+        Me.save.Size = New System.Drawing.Size(110, 40)
         Me.save.TabIndex = 11
         Me.save.Text = "Save"
         Me.save.UseVisualStyleBackColor = True
         '
         'quit
         '
+        Me.quit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.quit.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.quit.Location = New System.Drawing.Point(512, 526)
+        Me.quit.Location = New System.Drawing.Point(512, 508)
         Me.quit.Name = "quit"
-        Me.quit.Size = New System.Drawing.Size(110, 22)
+        Me.quit.Size = New System.Drawing.Size(110, 40)
         Me.quit.TabIndex = 12
         Me.quit.Text = "Exit"
         Me.quit.UseVisualStyleBackColor = True
@@ -134,7 +143,7 @@ Partial Class Main
         Me.cover.ErrorImage = CType(resources.GetObject("cover.ErrorImage"), System.Drawing.Image)
         Me.cover.Image = CType(resources.GetObject("cover.Image"), System.Drawing.Image)
         Me.cover.InitialImage = CType(resources.GetObject("cover.InitialImage"), System.Drawing.Image)
-        Me.cover.Location = New System.Drawing.Point(389, 52)
+        Me.cover.Location = New System.Drawing.Point(389, 70)
         Me.cover.Name = "cover"
         Me.cover.Size = New System.Drawing.Size(233, 220)
         Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage

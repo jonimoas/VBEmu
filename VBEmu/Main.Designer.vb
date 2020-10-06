@@ -30,12 +30,12 @@ Partial Class Main
         Me.devBox = New System.Windows.Forms.ComboBox()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.openSystemsCfg = New System.Windows.Forms.OpenFileDialog()
-        Me.save = New System.Windows.Forms.Button()
         Me.quit = New System.Windows.Forms.Button()
         Me.saveScript = New System.Windows.Forms.SaveFileDialog()
         Me.cover = New System.Windows.Forms.PictureBox()
         Me.openGamelist = New System.Windows.Forms.OpenFileDialog()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.save = New System.Windows.Forms.Button()
         CType(Me.cover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -112,17 +112,6 @@ Partial Class Main
         '
         Me.openSystemsCfg.FileName = "es_systems.cfg"
         '
-        'save
-        '
-        Me.save.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.save.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.save.Location = New System.Drawing.Point(389, 508)
-        Me.save.Name = "save"
-        Me.save.Size = New System.Drawing.Size(110, 40)
-        Me.save.TabIndex = 11
-        Me.save.Text = "Script"
-        Me.save.UseVisualStyleBackColor = True
-        '
         'quit
         '
         Me.quit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
@@ -163,6 +152,17 @@ Partial Class Main
         Me.TextBox1.Size = New System.Drawing.Size(346, 26)
         Me.TextBox1.TabIndex = 13
         '
+        'save
+        '
+        Me.save.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.save.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.save.Location = New System.Drawing.Point(389, 508)
+        Me.save.Name = "save"
+        Me.save.Size = New System.Drawing.Size(110, 40)
+        Me.save.TabIndex = 11
+        Me.save.Text = "Script"
+        Me.save.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -199,9 +199,9 @@ Partial Class Main
     Friend WithEvents devBox As System.Windows.Forms.ComboBox
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
     Friend WithEvents openSystemsCfg As System.Windows.Forms.OpenFileDialog
-    Friend WithEvents save As System.Windows.Forms.Button
     Friend WithEvents quit As System.Windows.Forms.Button
     Friend WithEvents saveScript As System.Windows.Forms.SaveFileDialog
     Friend WithEvents openGamelist As System.Windows.Forms.OpenFileDialog
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents save As Button
 End Class

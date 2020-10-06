@@ -17,6 +17,9 @@ comma-dot = change genre
 escape = close
 space - search
 
+You can double click in a black area, and the joystick configuration window will show. 
+Click on each command, press the button on the joystick and wait until the textbox fills.
+
 
 you can also use the save function to create a script and simply double click on it and run the selected game
 

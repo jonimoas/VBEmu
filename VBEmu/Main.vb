@@ -1,7 +1,10 @@
 ﻿Imports System.Collections.Specialized
 Imports System.Threading
+Imports System.Runtime.InteropServices
+
 
 Public Class Main
+    Public joyConf = False
     Dim gamelist
     Dim folder As String
     Dim consolelist As Collection
@@ -15,6 +18,72 @@ Public Class Main
     Dim developerfilter As Boolean
     Dim firstrun
     Dim t As Thread
+    Dim joyThread As Thread
+    Declare Function joyGetPosEx Lib "winmm.dll" (ByVal uJoyID As Integer, ByRef pji As JOYINFOEX) As Integer
+
+    <StructLayout(LayoutKind.Sequential)>
+    Public Structure JOYINFOEX
+        Public dwSize As Integer
+        Public dwFlags As Integer
+        Public dwXpos As Integer
+        Public dwYpos As Integer
+        Public dwZpos As Integer
+        Public dwRpos As Integer
+        Public dwUpos As Integer
+        Public dwVpos As Integer
+        Public dwButtons As Integer
+        Public dwButtonNumber As Integer
+        Public dwPOV As Integer
+        Public dwReserved1 As Integer
+        Public dwReserved2 As Integer
+    End Structure
+
+    Dim myjoyEX As JOYINFOEX
+
+    Private Sub JoyPoll()
+        While True
+            If Not joyConf Then
+
+
+                Call joyGetPosEx(0, myjoyEX)
+                With myjoyEX
+                    Dim newString = .dwXpos.ToString + "DEL" + .dwYpos.ToString + "DEL" + .dwZpos.ToString + "DEL" + .dwRpos.ToString + "DEL" + .dwUpos.ToString + "DEL" + .dwVpos.ToString + "DEL" + .dwButtons.ToString("X") + "DEL" + .dwButtonNumber.ToString + "DEL" + (.dwPOV / 100).ToString + "DEL" + (.dwPOV / 100).ToString
+                    Select Case newString
+                        Case My.Settings.joystick_start
+                            Me.InvokeIfRequired(Sub()
+                                                    ProcessCmdKey(New Message(), Keys.Enter)
+                                                End Sub)
+                        Case My.Settings.joystick_previous_system
+                            Me.InvokeIfRequired(Sub()
+                                                    ProcessCmdKey(New Message(), Keys.Left)
+                                                End Sub)
+                        Case My.Settings.joystick_next_system
+                            Me.InvokeIfRequired(Sub()
+                                                    ProcessCmdKey(New Message(), Keys.Right)
+                                                End Sub)
+                        Case My.Settings.joystick_next_genre
+                            Me.InvokeIfRequired(Sub()
+                                                    ProcessCmdKey(New Message(), Keys.OemPeriod)
+                                                End Sub)
+                        Case My.Settings.joystick_previous_genre
+                            Me.InvokeIfRequired(Sub()
+                                                    ProcessCmdKey(New Message(), Keys.Oemcomma)
+                                                End Sub)
+                        Case My.Settings.joystick_previous_game
+                            Me.InvokeIfRequired(Sub()
+                                                    ProcessCmdKey(New Message(), Keys.Up)
+                                                End Sub)
+                        Case My.Settings.joystick_next_game
+                            Me.InvokeIfRequired(Sub()
+                                                    ProcessCmdKey(New Message(), Keys.Down)
+                                                End Sub)
+                    End Select
+                End With
+            End If
+            Thread.Sleep(100)
+        End While
+    End Sub
+
     Private Function updateColors()
         systemBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         gameBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
@@ -34,6 +103,9 @@ Public Class Main
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         updateColors()
+        myjoyEX.dwSize = 64
+        myjoyEX.dwFlags = &HFF ' All information
+
         If My.Settings.es_settings_loc = "" Then
             openSystemsCfg.ShowDialog()
             folder = openSystemsCfg.FileName
@@ -56,7 +128,8 @@ Public Class Main
         rs.FindAllControls(Me)
         Me.Bounds = Screen.GetWorkingArea(Me)
         rs.ResizeAllControls(Me)
-
+        joyThread = New Threading.Thread(AddressOf JoyPoll)
+        joyThread.Start()
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gameBox.SelectedIndexChanged
@@ -338,5 +411,9 @@ Public Class Main
             gameBox.DataSource = finList
         End If
 
+    End Sub
+
+    Private Sub Main_DoubleClick(sender As Object, e As EventArgs) Handles MyBase.DoubleClick
+        Joysticks.Show()
     End Sub
 End Class

@@ -120,7 +120,7 @@ Partial Class Main
         Me.save.Name = "save"
         Me.save.Size = New System.Drawing.Size(110, 40)
         Me.save.TabIndex = 11
-        Me.save.Text = "Save"
+        Me.save.Text = "Script"
         Me.save.UseVisualStyleBackColor = True
         '
         'quit
@@ -140,14 +140,14 @@ Partial Class Main
         'cover
         '
         Me.cover.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.cover.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.cover.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.cover.ErrorImage = CType(resources.GetObject("cover.ErrorImage"), System.Drawing.Image)
         Me.cover.Image = CType(resources.GetObject("cover.Image"), System.Drawing.Image)
         Me.cover.InitialImage = CType(resources.GetObject("cover.InitialImage"), System.Drawing.Image)
         Me.cover.Location = New System.Drawing.Point(389, 70)
         Me.cover.Name = "cover"
-        Me.cover.Size = New System.Drawing.Size(233, 220)
-        Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.cover.Size = New System.Drawing.Size(233, 222)
+        Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.cover.TabIndex = 4
         Me.cover.TabStop = False
         '

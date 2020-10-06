@@ -27,7 +27,7 @@ Public Class Main
         devBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         ProgressBar1.ForeColor = ColorTranslator.FromHtml("#0066CC")
         ProgressBar1.BackColor = ColorTranslator.FromHtml("#E6E8E6")
-        cover.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        cover.BackColor = ColorTranslator.FromHtml("#080708")
         TextBox1.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         Return 0
     End Function
@@ -42,8 +42,9 @@ Public Class Main
             folder = My.Settings.es_settings_loc
         End If
         If Not System.IO.File.Exists(My.Settings.es_settings_loc) Then
-            MsgBox("es_systems.cfg not selected!")
-            End
+            openSystemsCfg.ShowDialog()
+            folder = openSystemsCfg.FileName
+            My.Settings.es_settings_loc = openSystemsCfg.FileName
         End If
         consolelist = XML.readGamesystem(folder)
         For Each c In consolelist
@@ -51,6 +52,11 @@ Public Class Main
         Next
         systemBox.SelectedIndex = 0
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Dim rs As New Resizer
+        rs.FindAllControls(Me)
+        Me.Bounds = Screen.GetWorkingArea(Me)
+        rs.ResizeAllControls(Me)
+
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gameBox.SelectedIndexChanged

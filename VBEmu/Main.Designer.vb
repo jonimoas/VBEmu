@@ -35,6 +35,7 @@ Partial Class Main
         Me.saveScript = New System.Windows.Forms.SaveFileDialog()
         Me.cover = New System.Windows.Forms.PictureBox()
         Me.openGamelist = New System.Windows.Forms.OpenFileDialog()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.cover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -44,16 +45,16 @@ Partial Class Main
         Me.gameBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.gameBox.FormattingEnabled = True
         Me.gameBox.ItemHeight = 20
-        Me.gameBox.Location = New System.Drawing.Point(1, 138)
+        Me.gameBox.Location = New System.Drawing.Point(1, 158)
         Me.gameBox.Name = "gameBox"
-        Me.gameBox.Size = New System.Drawing.Size(346, 364)
+        Me.gameBox.Size = New System.Drawing.Size(346, 344)
         Me.gameBox.Sorted = True
         Me.gameBox.TabIndex = 0
         '
         'description
         '
         Me.description.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.description.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.description.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.description.Location = New System.Drawing.Point(389, 296)
         Me.description.Multiline = True
         Me.description.Name = "description"
@@ -154,6 +155,14 @@ Partial Class Main
         '
         Me.openGamelist.FileName = "gamelist.xml"
         '
+        'TextBox1
+        '
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(1, 132)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(346, 26)
+        Me.TextBox1.TabIndex = 13
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -161,6 +170,7 @@ Partial Class Main
         Me.BackColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.ClientSize = New System.Drawing.Size(634, 550)
         Me.ControlBox = False
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.quit)
         Me.Controls.Add(Me.save)
         Me.Controls.Add(Me.ProgressBar1)
@@ -193,5 +203,5 @@ Partial Class Main
     Friend WithEvents quit As System.Windows.Forms.Button
     Friend WithEvents saveScript As System.Windows.Forms.SaveFileDialog
     Friend WithEvents openGamelist As System.Windows.Forms.OpenFileDialog
-
+    Friend WithEvents TextBox1 As TextBox
 End Class

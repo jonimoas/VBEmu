@@ -28,6 +28,7 @@ Public Class Main
         ProgressBar1.ForeColor = ColorTranslator.FromHtml("#0066CC")
         ProgressBar1.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         cover.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        TextBox1.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         Return 0
     End Function
 
@@ -69,7 +70,7 @@ Public Class Main
             Next
             description.Text = vbNullString
 
-                    cover.Image = cover.ErrorImage
+            cover.Image = cover.ErrorImage
         End If
         If description.Text = "" Then
             description.ScrollBars = ScrollBars.None
@@ -90,11 +91,13 @@ Public Class Main
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles systemBox.SelectedIndexChanged
+        TextBox1.Text = ""
         reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())
     End Sub
 
     Private Sub ListBox1_DoubleClick(sender As Object, e As EventArgs) Handles gameBox.DoubleClick
         consolelist.Item(systemBox.SelectedIndex + 1).run(selectedgame.getpath())
+        TextBox1.Text = ""
     End Sub
 
     Private Sub filter(ByVal genref, ByVal developerf)
@@ -133,6 +136,7 @@ Public Class Main
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles genreBox.SelectedIndexChanged
         filteredgames = New Collection
         Try
+            TextBox1.Text = ""
             filter(genreBox.SelectedItem.trim, devBox.SelectedItem.trim)
         Catch
             Return
@@ -142,6 +146,7 @@ Public Class Main
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles devBox.SelectedIndexChanged
         filteredgames = New Collection
         Try
+            TextBox1.Text = ""
             filter(genreBox.SelectedItem.trim, devBox.SelectedItem.trim)
         Catch
             Return
@@ -213,13 +218,17 @@ Public Class Main
                 Return True
             Case Keys.Enter
                 consolelist.Item(systemBox.SelectedIndex + 1).run(selectedgame.getpath())
+                TextBox1.Text = ""
                 Return True
             Case Keys.Escape
                 End
                 Return True
             Case Keys.Space
-                saveScript.FileName = selectedgame.getName + ".bat"
-                saveScript.ShowDialog()
+                If Me.ActiveControl.Name = "TextBox1" Then
+                    TextBox1.AppendText(" ")
+                    Return True
+                End If
+                TextBox1.Select()
                 Return True
         End Select
         Return MyBase.ProcessCmdKey(msg, keyData)
@@ -308,5 +317,20 @@ Public Class Main
         Dim x = r.Left + (r.Width - frm.Width) \ 2
         Dim y = r.Top + (r.Height - frm.Height) \ 2
         frm.Location = New Point(x, y)
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+        If TextBox1.Text = "" Then
+            gameBox.DataSource = gameControlList
+        Else
+            Dim finList As New Collection
+            For Each g In gameControlList
+                If g.ToLower().Contains(TextBox1.Text.ToLower()) Then
+                    finList.Add(g)
+                End If
+            Next
+            gameBox.DataSource = finList
+        End If
+
     End Sub
 End Class

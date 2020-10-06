@@ -15,7 +15,7 @@ left-right = change system
 enter = run
 comma-dot = change genre
 escape = close
-space - save
+space - search
 
 
 you can also use the save function to create a script and simply double click on it and run the selected game

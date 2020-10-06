@@ -58,7 +58,6 @@ Module XML
             id = id + 1
             Main.ProgressBar1.PerformStep()
         Next
-        MsgBox(games.Count)
         Return games
     End Function
     Function readGamesystem(ByVal filename)

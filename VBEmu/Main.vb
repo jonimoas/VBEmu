@@ -363,23 +363,28 @@ Public Class Main
             devBox.InvokeIfRequired(Sub()
                                         devBox.Enabled = False
                                     End Sub)
-            Dim files() As String = IO.Directory.GetFiles(romdir)
-            Dim id = 1
-            For Each file As String In files
-                gameControlList.Add(IO.Path.GetFileName(file))
-                gamelist.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
-                id = id + 1
-            Next
-            gamelistavailable = False
-            cover.InvokeIfRequired(Sub()
-                                       cover.ImageLocation = vbNull
-                                   End Sub)
-            description.InvokeIfRequired(Sub()
-                                             description.Text = ""
+            Try
+                Dim files() As String = IO.Directory.GetFiles(romdir)
+
+
+                Dim id = 1
+                For Each file As String In files
+                    gameControlList.Add(IO.Path.GetFileName(file))
+                    gamelist.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
+                    id = id + 1
+                Next
+                gamelistavailable = False
+                cover.InvokeIfRequired(Sub()
+                                           cover.ImageLocation = vbNull
+                                       End Sub)
+                description.InvokeIfRequired(Sub()
+                                                 description.Text = ""
+                                             End Sub)
+                gameBox.InvokeIfRequired(Sub()
+                                             gameBox.DataSource = gameControlList
                                          End Sub)
-            gameBox.InvokeIfRequired(Sub()
-                                         gameBox.DataSource = gameControlList
-                                     End Sub)
+            Catch
+            End Try
         End If
         Return 0
     End Function

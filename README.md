@@ -1,5 +1,21 @@
 # VBEmu
-Simple emulator frontend using the backend of EmulationStation focused on simplicity and speed. Good for users with huge collections 
+Simple emulator frontend using the backend of EmulationStation focused on simplicity and speed. Good for users with huge collections.
+
+## Features
+
+It includes all the usual features such as:
+
+* Ability to search games by typing the name
+* Ability to filter games by genre/publisher (requires gamelist xmls)
+* Pure keyboard navigation
+* Fully customizable controller input (limited to the first controller for now)
+
+Some unique features are:
+
+* The ability to create scripts for a game, and launch it without needing the frontend
+* Heavy use of threads, helping to avoid any freezes etc
+* Optimized gamelist parsing (thousands of roms in seconds)
+* Focus on big rom collections
 
 ## USAGE:
 

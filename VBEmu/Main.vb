@@ -17,6 +17,7 @@ Public Class Main
     Dim genrefilter As Boolean
     Dim developerfilter As Boolean
     Dim firstrun
+    Dim focus = True
     Dim t As Thread
     Dim joyThread As Thread
     Declare Function joyGetPosEx Lib "winmm.dll" (ByVal uJoyID As Integer, ByRef pji As JOYINFOEX) As Integer
@@ -42,7 +43,7 @@ Public Class Main
 
     Private Sub JoyPoll()
         While True
-            If Not joyConf Then
+            If Not joyConf And focus Then
 
 
                 Call joyGetPosEx(0, myjoyEX)
@@ -420,5 +421,13 @@ Public Class Main
 
     Private Sub Main_DoubleClick(sender As Object, e As EventArgs) Handles MyBase.DoubleClick
         Joysticks.Show()
+    End Sub
+
+    Private Sub Main_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        focus = True
+    End Sub
+
+    Private Sub Main_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        focus = False
     End Sub
 End Class

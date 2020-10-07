@@ -11,6 +11,8 @@ To run a rom simply double click on it or press the enter button.
 
 ##NAVIGATION:
 
+|button|function|
+| --- | --- |
 |up-down|change game|
 |left-right|change system|
 |enter|run|

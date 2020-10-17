@@ -11,26 +11,24 @@ Module XML
         Dim nometadatagames As New StringCollection()
         Dim id = 1
         Dim isrom As Boolean
+        Dim ingamelist As Boolean
         Main.ProgressBar1.Maximum = files.Count() * 2
-        Dim reader As XmlReader = XmlReader.Create(filename)
-            On Error Resume Next
-            Do
-            reader.ReadToFollowing("path")
-            Dim path = reader.ReadInnerXml()
+        Dim settings = New XmlReaderSettings()
+        settings.ConformanceLevel = ConformanceLevel.Fragment
+        Dim reader As XmlReader = XmlReader.Create(filename, settings)
+        On Error Resume Next
+        Do
+            reader.ReadToFollowing("game")
+            Dim doc As New XmlDocument
+            doc.LoadXml("<game>" + reader.ReadInnerXml() + "</game>")
+            Dim path = doc.GetElementsByTagName("path")(0).InnerText
             gamelistpaths.Add(path.Remove(0, 2).Trim)
-            reader.ReadToFollowing("name")
-                Dim name = reader.ReadInnerXml()
-                reader.ReadToFollowing("desc")
-                Dim desc = reader.ReadInnerXml()
-                reader.ReadToFollowing("image")
-                Dim image = reader.ReadInnerXml()
-                reader.ReadToFollowing("developer")
-                Dim developer = reader.ReadInnerXml()
-                reader.ReadToFollowing("genre")
-            Dim genre = reader.ReadInnerXml()
-
+            Dim name = doc.GetElementsByTagName("name")(0).InnerText
+            Dim desc = doc.GetElementsByTagName("desc")(0).InnerText
+            Dim image = doc.GetElementsByTagName("image")(0).InnerText
+            Dim developer = doc.GetElementsByTagName("developer")(0).InnerText
+            Dim genre = doc.GetElementsByTagName("genre")(0).InnerText
             If files.Contains(System.IO.Directory.GetParent(filename).ToString + "\" + path.Remove(0, 2).Trim) Then
-
                 If Not name = "" Then
                     games.Add(New Game(path, name, image, genre, developer, desc, id))
                 End If
@@ -38,14 +36,20 @@ Module XML
 
             Main.ProgressBar1.PerformStep()
         Loop While Not reader.EOF
-            id = id + 1
+        id = id + 1
         For Each f In files
-            isrom = True
+            isrom = False
+            inGameList = False
             f = f.Remove(0, f.LastIndexOf("\") + 1).Trim
-            If Not gamelistpaths.Contains(f) Then
+            For Each g In gamelistpaths
+                If g = f Then
+                    ingamelist = True
+                End If
+            Next
+            If Not ingamelist Then
                 For Each e In sys.getExtensions()
-                    If Not f.EndsWith(e) Then
-                        isrom = False
+                    If f.EndsWith(e) And e <> "" Then
+                        isrom = True
                     End If
                 Next
                 If isrom Then

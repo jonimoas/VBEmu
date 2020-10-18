@@ -172,6 +172,7 @@ Public Class Main
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles systemBox.SelectedIndexChanged
         TextBox1.Text = ""
+        gameBox.DataSource = New StringCollection
         reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())
     End Sub
 

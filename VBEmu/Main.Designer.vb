@@ -42,12 +42,13 @@ Partial Class Main
         'gameBox
         '
         Me.gameBox.BackColor = System.Drawing.Color.Beige
+        Me.gameBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.gameBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.gameBox.FormattingEnabled = True
         Me.gameBox.ItemHeight = 20
         Me.gameBox.Location = New System.Drawing.Point(1, 158)
         Me.gameBox.Name = "gameBox"
-        Me.gameBox.Size = New System.Drawing.Size(346, 344)
+        Me.gameBox.Size = New System.Drawing.Size(346, 340)
         Me.gameBox.Sorted = True
         Me.gameBox.TabIndex = 0
         '
@@ -66,12 +67,13 @@ Partial Class Main
         'systemBox
         '
         Me.systemBox.BackColor = System.Drawing.Color.White
+        Me.systemBox.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.systemBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.systemBox.FormattingEnabled = True
         Me.systemBox.ItemHeight = 20
         Me.systemBox.Location = New System.Drawing.Point(1, 2)
         Me.systemBox.Name = "systemBox"
-        Me.systemBox.Size = New System.Drawing.Size(346, 124)
+        Me.systemBox.Size = New System.Drawing.Size(346, 120)
         Me.systemBox.TabIndex = 7
         '
         'genreBox

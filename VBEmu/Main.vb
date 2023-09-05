@@ -326,6 +326,9 @@ Public Class Main
     End Function
 
     Private Function updateGames(ByVal params)
+        ProgressBar1.InvokeIfRequired(Sub()
+                                          ProgressBar1.Value = 0
+                                      End Sub)
         Dim romdir = params(0)
         Dim system = params(1)
         Dim headText = params(2)

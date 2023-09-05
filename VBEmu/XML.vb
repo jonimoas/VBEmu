@@ -81,7 +81,6 @@ Module XML
             Dim path = doc.GetElementsByTagName("path")(0).InnerText
             Dim extension = doc.GetElementsByTagName("extension")(0).InnerText
             Dim command = doc.GetElementsByTagName("command")(0).InnerText
-            MsgBox(doc.InnerText)
             If name IsNot Nothing Then
                 consoles.Add(New gameSystem(path, name, fullname, command.Replace("andsymbol", "&"), extension))
             End If

@@ -32,10 +32,10 @@ Partial Class Main
         Me.openSystemsCfg = New System.Windows.Forms.OpenFileDialog()
         Me.quit = New System.Windows.Forms.Button()
         Me.saveScript = New System.Windows.Forms.SaveFileDialog()
-        Me.cover = New System.Windows.Forms.PictureBox()
         Me.openGamelist = New System.Windows.Forms.OpenFileDialog()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.save = New System.Windows.Forms.Button()
+        Me.cover = New System.Windows.Forms.PictureBox()
         CType(Me.cover, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -100,7 +100,7 @@ Partial Class Main
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.BackColor = System.Drawing.Color.Beige
+        Me.ProgressBar1.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ProgressBar1.ForeColor = System.Drawing.Color.Black
         Me.ProgressBar1.Location = New System.Drawing.Point(1, 508)
         Me.ProgressBar1.Name = "ProgressBar1"
@@ -128,20 +128,6 @@ Partial Class Main
         'saveScript
         '
         '
-        'cover
-        '
-        Me.cover.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.cover.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.cover.ErrorImage = CType(resources.GetObject("cover.ErrorImage"), System.Drawing.Image)
-        Me.cover.Image = CType(resources.GetObject("cover.Image"), System.Drawing.Image)
-        Me.cover.InitialImage = CType(resources.GetObject("cover.InitialImage"), System.Drawing.Image)
-        Me.cover.Location = New System.Drawing.Point(389, 70)
-        Me.cover.Name = "cover"
-        Me.cover.Size = New System.Drawing.Size(233, 222)
-        Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.cover.TabIndex = 4
-        Me.cover.TabStop = False
-        '
         'openGamelist
         '
         Me.openGamelist.FileName = "gamelist.xml"
@@ -164,6 +150,20 @@ Partial Class Main
         Me.save.TabIndex = 11
         Me.save.Text = "Script"
         Me.save.UseVisualStyleBackColor = True
+        '
+        'cover
+        '
+        Me.cover.BackColor = System.Drawing.SystemColors.ControlLightLight
+        Me.cover.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.cover.ErrorImage = CType(resources.GetObject("cover.ErrorImage"), System.Drawing.Image)
+        Me.cover.Image = CType(resources.GetObject("cover.Image"), System.Drawing.Image)
+        Me.cover.InitialImage = CType(resources.GetObject("cover.InitialImage"), System.Drawing.Image)
+        Me.cover.Location = New System.Drawing.Point(389, 70)
+        Me.cover.Name = "cover"
+        Me.cover.Size = New System.Drawing.Size(233, 222)
+        Me.cover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.cover.TabIndex = 4
+        Me.cover.TabStop = False
         '
         'Main
         '

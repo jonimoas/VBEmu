@@ -150,6 +150,8 @@ Public Class Joysticks
         PreviousGenreText.Text = My.Settings.joystick_previous_genre
         PreviousGameText.Text = My.Settings.joystick_previous_game
         NextGameText.Text = My.Settings.joystick_next_game
+        CheckBox1.Checked = My.Settings.livecache
+        CheckBox2.Checked = My.Settings.precache
         updateColors()
     End Sub
 
@@ -193,5 +195,13 @@ Public Class Joysticks
         joyThread.Abort()
         Main.joyConf = False
         Me.Hide()
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        My.Settings.livecache = CheckBox1.Checked
+    End Sub
+
+    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
+        My.Settings.precache = CheckBox2.Checked
     End Sub
 End Class

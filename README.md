@@ -50,4 +50,9 @@ Click on each command, press the button on the joystick and wait until the textb
 
 You can also use the save function to create a script and simply double click on it and run the selected game
 
+## CACHING:
+
+You can toggle the caching from the joystick config screen. Live caching enables saves the parsed xml data 
+on the first run and pre caching makes the app load everything on startup, obviously costing in time.
+
 ![Screenshot](/screenshot.png)

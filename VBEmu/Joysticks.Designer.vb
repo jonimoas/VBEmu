@@ -37,6 +37,8 @@ Partial Class Joysticks
         Me.StartText = New System.Windows.Forms.TextBox()
         Me.PreviousSystemText = New System.Windows.Forms.TextBox()
         Me.OKButton = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'NextGameText
@@ -160,12 +162,36 @@ Partial Class Joysticks
         Me.OKButton.Text = "OK"
         Me.OKButton.UseVisualStyleBackColor = True
         '
-        'Form1
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.ForeColor = System.Drawing.Color.White
+        Me.CheckBox1.Location = New System.Drawing.Point(12, 203)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(80, 17)
+        Me.CheckBox1.TabIndex = 16
+        Me.CheckBox1.Text = "Live Cache"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.ForeColor = System.Drawing.Color.White
+        Me.CheckBox2.Location = New System.Drawing.Point(109, 203)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(76, 17)
+        Me.CheckBox2.TabIndex = 17
+        Me.CheckBox2.Text = "Pre Cache"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'Joysticks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(622, 235)
         Me.ControlBox = False
+        Me.Controls.Add(Me.CheckBox2)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.OKButton)
         Me.Controls.Add(Me.PreviousSystemButton)
         Me.Controls.Add(Me.StartButton)
@@ -181,7 +207,7 @@ Partial Class Joysticks
         Me.Controls.Add(Me.NextGenreText)
         Me.Controls.Add(Me.PreviousGameText)
         Me.Controls.Add(Me.NextGameText)
-        Me.Name = "Form1"
+        Me.Name = "Joysticks"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -202,4 +228,6 @@ Partial Class Joysticks
     Friend WithEvents StartText As TextBox
     Friend WithEvents PreviousSystemText As TextBox
     Friend WithEvents OKButton As Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
 End Class

@@ -71,19 +71,21 @@ Module XML
         rawXML = rawXML.Replace("All systems must be contained within the &amp;lt;systemList&amp;gt; tag.--&amp;gt;", vbNullString)
         Dim consoles = New Collection
         Dim reader As XmlReader = XmlReader.Create(New StringReader(rawXML))
+        On Error Resume Next
         Do
-            reader.ReadToFollowing("name")
-            Dim name = reader.ReadInnerXml()
-            reader.ReadToFollowing("fullname")
-            Dim fullname = reader.ReadInnerXml()
-            reader.ReadToFollowing("path")
-            Dim path = reader.ReadInnerXml()
-            reader.ReadToFollowing("extension")
-            Dim extension = reader.ReadInnerXml()
-            reader.ReadToFollowing("command")
-            Dim command = reader.ReadInnerXml()
-            consoles.Add(New gameSystem(path, name, fullname, command.Replace("andsymbol", "&"), extension))
-        Loop While reader.ReadToFollowing("system")
+            reader.ReadToFollowing("system")
+            Dim doc As New XmlDocument
+            doc.LoadXml("<system>" + reader.ReadInnerXml() + "</system>")
+            Dim name = doc.GetElementsByTagName("name")(0).InnerText
+            Dim fullname = doc.GetElementsByTagName("fullname")(0).InnerText
+            Dim path = doc.GetElementsByTagName("path")(0).InnerText
+            Dim extension = doc.GetElementsByTagName("extension")(0).InnerText
+            Dim command = doc.GetElementsByTagName("command")(0).InnerText
+            If Not name = "" Then
+                consoles.Add(New gameSystem(path, name, fullname, command.Replace("andsymbol", "&"), extension))
+            End If
+        Loop While Not reader.EOF
         Return consoles
     End Function
+
 End Module

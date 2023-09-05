@@ -17,9 +17,13 @@ Public Class Main
     Dim genrefilter As Boolean
     Dim developerfilter As Boolean
     Dim firstrun
-    Dim focus = True
+    Dim windowFocus = True
     Dim t As Thread
     Dim joyThread As Thread
+    Dim globalgamelist = New Collection
+    Dim globalgenrelist = New Collection
+    Dim globaldevlist = New Collection
+    Dim globalgamenames = New Collection
     Declare Function joyGetPosEx Lib "winmm.dll" (ByVal uJoyID As Integer, ByRef pji As JOYINFOEX) As Integer
 
     <StructLayout(LayoutKind.Sequential)>
@@ -43,7 +47,7 @@ Public Class Main
 
     Private Sub JoyPoll()
         While True
-            If Not joyConf And focus Then
+            If Not joyConf And windowFocus Then
 
 
                 Call joyGetPosEx(0, myjoyEX)
@@ -106,7 +110,6 @@ Public Class Main
         updateColors()
         myjoyEX.dwSize = 64
         myjoyEX.dwFlags = &HFF ' All information
-
         If My.Settings.es_settings_loc = "" Then
             openSystemsCfg.ShowDialog()
             folder = openSystemsCfg.FileName
@@ -124,6 +127,13 @@ Public Class Main
             systemBox.Items.Add(c.getfullName())
         Next
         systemBox.SelectedIndex = 0
+        Dim i = 1
+        If My.Settings.precache Then
+            For Each c In consolelist
+                updateGames({folder, i, "", False})
+                i += 1
+            Next
+        End If
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Dim rs As New Resizer
         rs.FindAllControls(Me)
@@ -167,7 +177,7 @@ Public Class Main
         Catch
             t = New Threading.Thread(AddressOf updateGames)
         End Try
-        t.Start(New Object() {romdir, systemBox.SelectedIndex + 1, systemBox.SelectedItem})
+        t.Start(New Object() {romdir, systemBox.SelectedIndex + 1, systemBox.SelectedItem, My.Settings.livecache})
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles systemBox.SelectedIndexChanged
@@ -319,62 +329,30 @@ Public Class Main
         Dim romdir = params(0)
         Dim system = params(1)
         Dim headText = params(2)
+        Dim reparseXML = Not params(3)
         gamelist = New Collection
         gameControlList = New Collection
         genrelist = New StringCollection()
         developerlist = New StringCollection()
         genrelist.Add("All")
         developerlist.Add("All")
-        If IO.File.Exists(consolelist.Item(system).getGamelist) Then
-            gamelist = XML.readGame(consolelist.Item(system).getGamelist, consolelist.Item(system))
-            ProgressBar1.InvokeIfRequired(Sub()
-                                              ProgressBar1.Maximum = gamelist.Count
+        If globalgamelist.Contains(consolelist.Item(system).getName()) And Not reparseXML Then
+            gamelist = globalgamelist.item(consolelist.Item(system).getName())
+            gameControlList = globalgamenames.item(consolelist.Item(system).getName())
+            If globaldevlist.contains(consolelist.Item(system).getName()) Then
+                gamelistavailable = True
+                developerlist = globaldevlist.item(consolelist.Item(system).getName())
+                genrelist = globalgenrelist.item(consolelist.Item(system).getName())
+                genreBox.InvokeIfRequired(Sub()
+                                              genreBox.Enabled = True
+                                              genreBox.DataSource = genrelist
                                           End Sub)
-            For Each g In gamelist
-                If g.getGenre().trim <> "" And Not genrelist.Contains(g.getGenre().trim) Then
-                    genrelist.Add(g.getGenre().trim)
-                End If
-                If g.getDeveloper().trim <> "" And Not developerlist.Contains(g.getDeveloper().trim) Then
-                    developerlist.Add(g.getDeveloper())
-                End If
-                gameControlList.Add(g.getName())
-                ProgressBar1.InvokeIfRequired(Sub()
-                                                  ProgressBar1.PerformStep()
-                                              End Sub)
-            Next
-            genreBox.InvokeIfRequired(Sub()
-                                          genreBox.Enabled = True
-                                          genreBox.DataSource = genrelist
-                                      End Sub)
-            devBox.InvokeIfRequired(Sub()
-                                        devBox.Enabled = True
-                                        devBox.DataSource = developerlist
-                                    End Sub)
-            gamelistavailable = True
-            filteredgames = gamelist
-            gameBox.InvokeIfRequired(Sub()
-                                         gameBox.DataSource = gameControlList
-                                     End Sub)
-            gameBox.InvokeIfRequired(Sub()
-                                         gameBox.SelectedIndex = 0
-                                     End Sub)
-        Else
-            genreBox.InvokeIfRequired(Sub()
-                                          genreBox.Enabled = False
-                                      End Sub)
-            devBox.InvokeIfRequired(Sub()
-                                        devBox.Enabled = False
-                                    End Sub)
-            Try
-                Dim files() As String = IO.Directory.GetFiles(romdir)
-
-
-                Dim id = 1
-                For Each file As String In files
-                    gameControlList.Add(IO.Path.GetFileName(file))
-                    gamelist.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
-                    id = id + 1
-                Next
+                devBox.InvokeIfRequired(Sub()
+                                            devBox.Enabled = True
+                                            devBox.DataSource = developerlist
+                                        End Sub)
+                filteredgames = gamelist
+            Else
                 gamelistavailable = False
                 cover.InvokeIfRequired(Sub()
                                            cover.ImageLocation = vbNull
@@ -382,11 +360,116 @@ Public Class Main
                 description.InvokeIfRequired(Sub()
                                                  description.Text = ""
                                              End Sub)
+                genreBox.InvokeIfRequired(Sub()
+                                              genreBox.Enabled = False
+                                          End Sub)
+                devBox.InvokeIfRequired(Sub()
+                                            devBox.Enabled = False
+                                        End Sub)
+            End If
+            gameBox.InvokeIfRequired(Sub()
+                                         gameBox.DataSource = gameControlList
+                                     End Sub)
+            If gamelistavailable Then
+                Try
+                    gameBox.InvokeIfRequired(Sub()
+                                                 gameBox.SelectedIndex = 0
+                                             End Sub)
+                Catch
+                    If globalgamelist.Contains(consolelist.Item(system).getName()) Then
+                        globalgamelist.Remove(consolelist.Item(system).getName())
+                        globalgamenames.Remove(consolelist.Item(system).getName())
+                        If gamelistavailable Then
+                            globalgenrelist.Remove(consolelist.Item(system).getName())
+                            globaldevlist.Remove(consolelist.Item(system).getName())
+                        End If
+                    End If
+                    updateGames(params)
+                End Try
+            End If
+        Else
+            If IO.File.Exists(consolelist.Item(system).getGamelist) Then
+                gamelist = XML.readGame(consolelist.Item(system).getGamelist, consolelist.Item(system))
+                ProgressBar1.InvokeIfRequired(Sub()
+                                                  ProgressBar1.Maximum = gamelist.Count
+                                              End Sub)
+                For Each g In gamelist
+                    If g.getGenre().trim <> "" And Not genrelist.Contains(g.getGenre().trim) Then
+                        genrelist.Add(g.getGenre().trim)
+                    End If
+                    If g.getDeveloper().trim <> "" And Not developerlist.Contains(g.getDeveloper().trim) Then
+                        developerlist.Add(g.getDeveloper())
+                    End If
+                    gameControlList.Add(g.getName())
+                    ProgressBar1.InvokeIfRequired(Sub()
+                                                      ProgressBar1.PerformStep()
+                                                  End Sub)
+                Next
+                genreBox.InvokeIfRequired(Sub()
+                                              genreBox.Enabled = True
+                                              genreBox.DataSource = genrelist
+                                          End Sub)
+                devBox.InvokeIfRequired(Sub()
+                                            devBox.Enabled = True
+                                            devBox.DataSource = developerlist
+                                        End Sub)
+                gamelistavailable = True
+                filteredgames = gamelist
                 gameBox.InvokeIfRequired(Sub()
                                              gameBox.DataSource = gameControlList
                                          End Sub)
-            Catch
-            End Try
+                If Not My.Settings.precache Then
+                    gameBox.InvokeIfRequired(Sub()
+                                                 gameBox.SelectedIndex = 0
+                                             End Sub)
+                End If
+
+            Else
+                genreBox.InvokeIfRequired(Sub()
+                                              genreBox.Enabled = False
+                                          End Sub)
+                devBox.InvokeIfRequired(Sub()
+                                            devBox.Enabled = False
+                                        End Sub)
+                gamelistavailable = False
+                Try
+                    Dim files() As String = IO.Directory.GetFiles(romdir)
+
+
+                    Dim id = 1
+                    For Each file As String In files
+                        gameControlList.Add(IO.Path.GetFileName(file))
+                        gamelist.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
+                        id = id + 1
+                    Next
+                    cover.InvokeIfRequired(Sub()
+                                               cover.ImageLocation = vbNull
+                                           End Sub)
+                    description.InvokeIfRequired(Sub()
+                                                     description.Text = ""
+                                                 End Sub)
+                    gameBox.InvokeIfRequired(Sub()
+                                                 gameBox.DataSource = gameControlList
+                                             End Sub)
+                Catch
+                    Return 0
+                End Try
+            End If
+
+            If globalgamelist.Contains(consolelist.Item(system).getName()) Then
+                globalgamelist.Remove(consolelist.Item(system).getName())
+                globalgamenames.Remove(consolelist.Item(system).getName())
+                If gamelistavailable Then
+                    globalgenrelist.Remove(consolelist.Item(system).getName())
+                    globaldevlist.Remove(consolelist.Item(system).getName())
+                End If
+            End If
+            globalgamelist.Add(gamelist, consolelist.Item(system).getName())
+            globalgamenames.Add(gameControlList, consolelist.Item(system).getName())
+            If gamelistavailable Then
+                globalgenrelist.Add(genrelist, consolelist.Item(system).getName())
+                globaldevlist.Add(developerlist, consolelist.Item(system).getName())
+            End If
         End If
         Return 0
     End Function
@@ -425,10 +508,10 @@ Public Class Main
     End Sub
 
     Private Sub Main_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
-        focus = True
+        windowFocus = True
     End Sub
 
     Private Sub Main_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
-        focus = False
+        windowFocus = False
     End Sub
 End Class

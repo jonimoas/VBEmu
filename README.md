@@ -54,5 +54,6 @@ You can also use the save function to create a script and simply double click on
 
 You can toggle the caching from the joystick config screen. Live caching enables saves the parsed xml data 
 on the first run and pre caching makes the app load everything on startup, obviously costing in time.
+The freeze UI option, if enabled, removes any threading, so the UI will freeze on any loading.
 
 ![Screenshot](/screenshot.png)

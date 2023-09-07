@@ -204,4 +204,8 @@ Public Class Joysticks
     Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
         My.Settings.precache = CheckBox2.Checked
     End Sub
+
+    Private Sub CheckBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox3.CheckedChanged
+        My.Settings.freeze = CheckBox3.Checked
+    End Sub
 End Class

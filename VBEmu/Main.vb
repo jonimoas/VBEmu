@@ -171,13 +171,18 @@ Public Class Main
     End Sub
 
     Private Sub reloadGames(ByVal romdir)
-        Try
-            t.Abort()
-            t = New Threading.Thread(AddressOf updateGames)
-        Catch
-            t = New Threading.Thread(AddressOf updateGames)
-        End Try
-        t.Start(New Object() {romdir, systemBox.SelectedIndex + 1, systemBox.SelectedItem, My.Settings.livecache})
+        If My.Settings.freeze Then
+            updateGames({romdir, systemBox.SelectedIndex + 1, systemBox.SelectedItem, My.Settings.livecache})
+        Else
+            Try
+                t.Abort()
+                t = New Threading.Thread(AddressOf updateGames)
+            Catch
+                t = New Threading.Thread(AddressOf updateGames)
+            End Try
+            t.Start(New Object() {romdir, systemBox.SelectedIndex + 1, systemBox.SelectedItem, My.Settings.livecache})
+        End If
+
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles systemBox.SelectedIndexChanged

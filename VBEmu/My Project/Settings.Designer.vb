@@ -173,6 +173,18 @@ Namespace My
                 Me("livecache") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property freeze() As Boolean
+            Get
+                Return CType(Me("freeze"),Boolean)
+            End Get
+            Set
+                Me("freeze") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

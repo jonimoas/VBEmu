@@ -39,6 +39,7 @@ Partial Class Joysticks
         Me.OKButton = New System.Windows.Forms.Button()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'NextGameText
@@ -184,12 +185,24 @@ Partial Class Joysticks
         Me.CheckBox2.Text = "Pre Cache"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.ForeColor = System.Drawing.Color.White
+        Me.CheckBox3.Location = New System.Drawing.Point(219, 203)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(72, 17)
+        Me.CheckBox3.TabIndex = 18
+        Me.CheckBox3.Text = "Freeze UI"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
         'Joysticks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(622, 235)
         Me.ControlBox = False
+        Me.Controls.Add(Me.CheckBox3)
         Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.OKButton)
@@ -230,4 +243,5 @@ Partial Class Joysticks
     Friend WithEvents OKButton As Button
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents CheckBox3 As CheckBox
 End Class

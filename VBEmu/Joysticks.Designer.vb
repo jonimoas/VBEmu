@@ -204,7 +204,7 @@ Partial Class Joysticks
         Me.TokenButton.Name = "TokenButton"
         Me.TokenButton.Size = New System.Drawing.Size(121, 20)
         Me.TokenButton.TabIndex = 20
-        Me.TokenButton.Text = "RAWG Token"
+        Me.TokenButton.Text = "Save RAWG Token"
         Me.TokenButton.UseVisualStyleBackColor = True
         '
         'TokenBox

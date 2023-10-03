@@ -402,11 +402,15 @@ Public Class Main
                                                   ProgressBar1.Maximum = gamelist.Count
                                               End Sub)
                 For Each g In gamelist
-                    If g.getGenre().trim <> "" And Not genrelist.Contains(g.getGenre().trim) Then
-                        genrelist.Add(g.getGenre().trim)
+                    If Not g.getGenre() Is Nothing Then
+                        If Not genrelist.Contains(g.getGenre().trim) Then
+                            genrelist.Add(g.getGenre().trim)
+                        End If
                     End If
-                    If g.getDeveloper().trim <> "" And Not developerlist.Contains(g.getDeveloper().trim) Then
-                        developerlist.Add(g.getDeveloper())
+                    If Not g.getDeveloper() Is Nothing Then
+                        If Not developerlist.Contains(g.getDeveloper().trim) Then
+                            developerlist.Add(g.getDeveloper())
+                        End If
                     End If
                     gameControlList.Add(g.getName())
                     ProgressBar1.InvokeIfRequired(Sub()

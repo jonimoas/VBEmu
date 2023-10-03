@@ -58,7 +58,7 @@ Module XML
             End If
         Next
         For Each f In nometadatagames
-            games.Add(New Game("./" + f, f, "", "", "", "", id))
+            games.Add(New Game("./" + f, f, Nothing, Nothing, Nothing, Nothing, id))
             id = id + 1
             Main.ProgressBar1.PerformStep()
         Next

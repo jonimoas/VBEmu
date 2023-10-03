@@ -185,6 +185,18 @@ Namespace My
                 Me("freeze") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property RAWGToken() As String
+            Get
+                Return CType(Me("RAWGToken"),String)
+            End Get
+            Set
+                Me("RAWGToken") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

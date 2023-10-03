@@ -39,7 +39,7 @@ Module XML
         id = id + 1
         For Each f In files
             isrom = False
-            inGameList = False
+            ingamelist = False
             f = f.Remove(0, f.LastIndexOf("\") + 1).Trim
             For Each g In gamelistpaths
                 If g = f Then
@@ -58,7 +58,7 @@ Module XML
             End If
         Next
         For Each f In nometadatagames
-            games.Add(New Game("./" + f, f, Nothing, Nothing, Nothing, Nothing, id))
+            games.Add(New Game("./" + f, f, Nothing, Nothing, Nothing, Nothing, id), id)
             id = id + 1
             Main.ProgressBar1.PerformStep()
         Next

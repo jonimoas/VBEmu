@@ -5,7 +5,7 @@ Imports System.Runtime.InteropServices
 
 Public Class Main
     Public joyConf = False
-    Dim gamelist
+    Dim gamelist As new Collection
     Dim folder As String
     Dim consolelist As Collection
     Dim gamelistavailable As Boolean
@@ -148,21 +148,31 @@ Public Class Main
             For Each g In gamelist
                 If gameBox.SelectedItem = g.getName() Then
                     selectedgame = g
-                    cover.ImageLocation = consolelist.Item(systemBox.SelectedIndex + 1).getPath() + g.getImage()
-                    description.Text = g.getDescription()
+                    If Not g.getDescription() Is Nothing Then
+                        description.Text = g.getDescription()
+                    Else
+                        description.Text = Nothing
+                    End If
+                    If Not g.getImage() Is Nothing Then
+                        cover.ImageLocation = consolelist.Item(systemBox.SelectedIndex + 1).getPath() + g.getImage()
+                    Else
+                        cover.Image = cover.ErrorImage
+                    End If
+                    Exit For
                 End If
             Next
         Else
             For Each g In gamelist
                 If gameBox.SelectedItem = g.getName() Then
                     selectedgame = g
+                    Exit For
                 End If
             Next
-            description.Text = vbNullString
+            description.Text = Nothing
 
             cover.Image = cover.ErrorImage
         End If
-        If description.Text = "" Then
+        If selectedgame.getDescription() Is Nothing Then
             description.ScrollBars = ScrollBars.None
         Else
             description.ScrollBars = ScrollBars.Vertical
@@ -525,5 +535,18 @@ Public Class Main
 
     Private Sub Main_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         windowFocus = False
+    End Sub
+
+    Private Sub cover_Click(sender As Object, e As EventArgs) Handles cover.Click
+        Try
+            selectedgame = HTTP.updateMetaData(selectedgame)
+            description.Text = selectedgame.getDescription()
+            cover.ImageLocation = selectedgame.getImage()
+            description.ScrollBars = ScrollBars.Vertical
+        Catch
+            description.Text = Nothing
+            cover.Image = cover.ErrorImage
+            description.ScrollBars = ScrollBars.None
+        End Try
     End Sub
 End Class

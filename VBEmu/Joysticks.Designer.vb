@@ -40,6 +40,8 @@ Partial Class Joysticks
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.TokenButton = New System.Windows.Forms.Button()
+        Me.TokenBox = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'NextGameText
@@ -156,7 +158,7 @@ Partial Class Joysticks
         '
         'OKButton
         '
-        Me.OKButton.Location = New System.Drawing.Point(522, 197)
+        Me.OKButton.Location = New System.Drawing.Point(522, 228)
         Me.OKButton.Name = "OKButton"
         Me.OKButton.Size = New System.Drawing.Size(87, 26)
         Me.OKButton.TabIndex = 15
@@ -167,7 +169,7 @@ Partial Class Joysticks
         '
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.ForeColor = System.Drawing.Color.White
-        Me.CheckBox1.Location = New System.Drawing.Point(12, 203)
+        Me.CheckBox1.Location = New System.Drawing.Point(12, 234)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(80, 17)
         Me.CheckBox1.TabIndex = 16
@@ -178,7 +180,7 @@ Partial Class Joysticks
         '
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.ForeColor = System.Drawing.Color.White
-        Me.CheckBox2.Location = New System.Drawing.Point(109, 203)
+        Me.CheckBox2.Location = New System.Drawing.Point(109, 234)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(76, 17)
         Me.CheckBox2.TabIndex = 17
@@ -189,19 +191,37 @@ Partial Class Joysticks
         '
         Me.CheckBox3.AutoSize = True
         Me.CheckBox3.ForeColor = System.Drawing.Color.White
-        Me.CheckBox3.Location = New System.Drawing.Point(219, 203)
+        Me.CheckBox3.Location = New System.Drawing.Point(219, 234)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.Size = New System.Drawing.Size(72, 17)
         Me.CheckBox3.TabIndex = 18
         Me.CheckBox3.Text = "Freeze UI"
         Me.CheckBox3.UseVisualStyleBackColor = True
         '
+        'TokenButton
+        '
+        Me.TokenButton.Location = New System.Drawing.Point(12, 194)
+        Me.TokenButton.Name = "TokenButton"
+        Me.TokenButton.Size = New System.Drawing.Size(121, 20)
+        Me.TokenButton.TabIndex = 20
+        Me.TokenButton.Text = "RAWG Token"
+        Me.TokenButton.UseVisualStyleBackColor = True
+        '
+        'TokenBox
+        '
+        Me.TokenBox.Location = New System.Drawing.Point(145, 194)
+        Me.TokenBox.Name = "TokenBox"
+        Me.TokenBox.Size = New System.Drawing.Size(464, 20)
+        Me.TokenBox.TabIndex = 19
+        '
         'Joysticks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(622, 235)
+        Me.ClientSize = New System.Drawing.Size(622, 276)
         Me.ControlBox = False
+        Me.Controls.Add(Me.TokenButton)
+        Me.Controls.Add(Me.TokenBox)
         Me.Controls.Add(Me.CheckBox3)
         Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.CheckBox1)
@@ -244,4 +264,6 @@ Partial Class Joysticks
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents TokenButton As Button
+    Friend WithEvents TokenBox As TextBox
 End Class

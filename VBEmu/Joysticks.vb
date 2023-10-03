@@ -126,6 +126,7 @@ Public Class Joysticks
         PreviousGenreText.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         PreviousSystemText.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         StartText.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        TokenBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         Me.BackColor = ColorTranslator.FromHtml("#080708")
         NextGameButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
         NextGenreButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
@@ -135,6 +136,7 @@ Public Class Joysticks
         PreviousSystemButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
         StartButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
         OKButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
+        TokenButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
         Return 0
     End Function
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -152,6 +154,7 @@ Public Class Joysticks
         NextGameText.Text = My.Settings.joystick_next_game
         CheckBox1.Checked = My.Settings.livecache
         CheckBox2.Checked = My.Settings.precache
+        TokenBox.Text = My.Settings.RAWGToken
         updateColors()
     End Sub
 
@@ -207,5 +210,9 @@ Public Class Joysticks
 
     Private Sub CheckBox3_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox3.CheckedChanged
         My.Settings.freeze = CheckBox3.Checked
+    End Sub
+
+    Private Sub TokenButton_Click(sender As Object, e As EventArgs) Handles TokenButton.Click
+        My.Settings.RAWGToken = TokenBox.Text
     End Sub
 End Class

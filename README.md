@@ -1,5 +1,6 @@
 # VBEmu
-Simple emulator frontend using the file formats of EmulationStation focused on simplicity and speed. Good for users with huge collections.
+Simple emulator frontend using the file formats of EmulationStation and connected to rawg.io, focused on simplicity and speed.
+Good for users with huge collections.
 
 ## Features
 
@@ -16,6 +17,7 @@ Some unique features are:
 * Heavy use of threads, helping to avoid any freezes etc
 * Optimized gamelist parsing (thousands of roms in seconds)
 * Focus on big rom collections
+* Connectivity to RAWG.io, albeit on a basic level for now
 
 ## USAGE:
 
@@ -55,5 +57,15 @@ You can also use the save function to create a script and simply double click on
 You can toggle the caching from the joystick config screen. Live caching enables saves the parsed xml data 
 on the first run and pre caching makes the app load everything on startup, obviously costing in time.
 The freeze UI option, if enabled, removes any threading, so the UI will freeze on any loading.
+
+## RAWG.io:
+
+In order to configure usage of the rawg.io rest API, you can get a token here:
+https://rawg.io/apidocs
+
+Then, paste the token in the joystick configuration screen and click Save.
+
+If a game does not have metadata, you can double click on the image placeholder and an attempt will be made
+to download them from rawg.io. No save functionality yet :)
 
 ![Screenshot](/screenshot.png)

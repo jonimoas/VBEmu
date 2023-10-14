@@ -88,5 +88,23 @@ Module XML
         Loop While Not reader.EOF
         Return consoles
     End Function
-
+    Function buildXML(ByVal g As Game)
+        Dim document As XDocument = <?xml version="1.0" encoding="UTF-8"?>
+                                    <game>
+                                        <path><%= g.getpath() %></path>
+                                        <name><%= g.getName() %></name>
+                                        <image><%= g.getImage() %></image>
+                                        <desc><%= g.getDescription() %></desc>
+                                        <developer><%= g.getDeveloper() %></developer>
+                                        <genre><%= g.getGenre() %></genre>
+                                    </game>
+        Return document.ToString()
+    End Function
+    Sub updateGamelist(ByVal s As gameSystem, g As Game)
+        g = downloadImage(g, s)
+        Dim XMLstring = buildXML(g)
+        Dim currentGameList = My.Computer.FileSystem.ReadAllText(s.getGamelist())
+        currentGameList = currentGameList.Insert(currentGameList.IndexOf("</game>") + 7, vbNewLine + XMLstring)
+        My.Computer.FileSystem.WriteAllText(s.getGamelist(), currentGameList, False)
+    End Sub
 End Module

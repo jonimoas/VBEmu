@@ -42,6 +42,7 @@ Partial Class Joysticks
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.TokenButton = New System.Windows.Forms.Button()
         Me.TokenBox = New System.Windows.Forms.TextBox()
+        Me.AutoReload = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'NextGameText
@@ -214,12 +215,24 @@ Partial Class Joysticks
         Me.TokenBox.Size = New System.Drawing.Size(464, 20)
         Me.TokenBox.TabIndex = 19
         '
+        'AutoReload
+        '
+        Me.AutoReload.AutoSize = True
+        Me.AutoReload.ForeColor = System.Drawing.Color.White
+        Me.AutoReload.Location = New System.Drawing.Point(297, 234)
+        Me.AutoReload.Name = "AutoReload"
+        Me.AutoReload.Size = New System.Drawing.Size(164, 17)
+        Me.AutoReload.TabIndex = 21
+        Me.AutoReload.Text = "Reload After Gamelist update"
+        Me.AutoReload.UseVisualStyleBackColor = True
+        '
         'Joysticks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(622, 276)
         Me.ControlBox = False
+        Me.Controls.Add(Me.AutoReload)
         Me.Controls.Add(Me.TokenButton)
         Me.Controls.Add(Me.TokenBox)
         Me.Controls.Add(Me.CheckBox3)
@@ -266,4 +279,5 @@ Partial Class Joysticks
     Friend WithEvents CheckBox3 As CheckBox
     Friend WithEvents TokenButton As Button
     Friend WithEvents TokenBox As TextBox
+    Friend WithEvents AutoReload As CheckBox
 End Class

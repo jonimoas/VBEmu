@@ -24,6 +24,7 @@ Public Class Main
     Dim globalgenrelist = New Collection
     Dim globaldevlist = New Collection
     Dim globalgamenames = New Collection
+    Dim metadataDownloaded = False
     Declare Function joyGetPosEx Lib "winmm.dll" (ByVal uJoyID As Integer, ByRef pji As JOYINFOEX) As Integer
 
     <StructLayout(LayoutKind.Sequential)>
@@ -144,6 +145,7 @@ Public Class Main
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gameBox.SelectedIndexChanged
+        metadataDownloaded = False
         If gamelistavailable Then
             For Each g In gamelist
                 If gameBox.SelectedItem = g.getName() Then
@@ -196,6 +198,7 @@ Public Class Main
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles systemBox.SelectedIndexChanged
+        metadataDownloaded = False
         TextBox1.Text = ""
         gameBox.DataSource = New StringCollection
         reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())
@@ -207,6 +210,7 @@ Public Class Main
     End Sub
 
     Private Sub filter(ByVal genref, ByVal developerf)
+        metadataDownloaded = False
         If gamelistavailable Then
             gameControlList.Clear()
             filteredgames = New Collection
@@ -240,6 +244,7 @@ Public Class Main
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles genreBox.SelectedIndexChanged
+        metadataDownloaded = False
         filteredgames = New Collection
         Try
             TextBox1.Text = ""
@@ -250,6 +255,7 @@ Public Class Main
     End Sub
 
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles devBox.SelectedIndexChanged
+        metadataDownloaded = False
         filteredgames = New Collection
         Try
             TextBox1.Text = ""
@@ -279,6 +285,7 @@ Public Class Main
     End Sub
 
     Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, keyData As System.Windows.Forms.Keys) As Boolean
+        metadataDownloaded = False
         Select Case keyData
             Case Keys.Up
                 If gameBox.SelectedIndex = 0 Then
@@ -341,6 +348,7 @@ Public Class Main
     End Function
 
     Private Function updateGames(ByVal params)
+        metadataDownloaded = False
         ProgressBar1.InvokeIfRequired(Sub()
                                           ProgressBar1.Value = 0
                                       End Sub)
@@ -511,6 +519,7 @@ Public Class Main
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+        metadataDownloaded = False
         If TextBox1.Text = "" Then
             gameBox.DataSource = gameControlList
         Else
@@ -537,16 +546,39 @@ Public Class Main
         windowFocus = False
     End Sub
 
-    Private Sub cover_Click(sender As Object, e As EventArgs) Handles cover.Click
-        Try
-            selectedgame = HTTP.updateMetaData(selectedgame)
-            description.Text = selectedgame.getDescription()
-            cover.ImageLocation = selectedgame.getImage()
-            description.ScrollBars = ScrollBars.Vertical
-        Catch
-            description.Text = Nothing
-            cover.Image = cover.ErrorImage
-            description.ScrollBars = ScrollBars.None
-        End Try
+    Private Sub cover_Click(sender As Object, e As MouseEventArgs) Handles cover.Click
+        If e.Button = MouseButtons.Left Then
+            Try
+                If selectedgame.getDescription() = Nothing Then
+                    description.Text = "DOWNLOADING"
+                    selectedgame = HTTP.updateMetaDataRAWG(selectedgame)
+                    description.Text = selectedgame.getDescription()
+                    cover.ImageLocation = selectedgame.getImage()
+                    description.ScrollBars = ScrollBars.Vertical
+                    metadataDownloaded = True
+                Else
+                    MsgBox("Game already has metadata!")
+                    metadataDownloaded = False
+                End If
+            Catch
+                description.Text = Nothing
+                cover.Image = cover.ErrorImage
+                description.ScrollBars = ScrollBars.None
+            End Try
+        ElseIf e.Button = MouseButtons.Right Then
+            If metadataDownloaded Then
+                updateGamelist(consolelist.Item(systemBox.SelectedIndex + 1), selectedgame)
+                metadataDownloaded = False
+                If My.Settings.AutoReload Then
+                    metadataDownloaded = False
+                    TextBox1.Text = ""
+                    gameBox.DataSource = New StringCollection
+                    reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())
+                End If
+            Else
+                MsgBox("This metadata is already stored!")
+            End If
+        End If
     End Sub
+
 End Class

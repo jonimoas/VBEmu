@@ -155,6 +155,7 @@ Public Class Joysticks
         CheckBox1.Checked = My.Settings.livecache
         CheckBox2.Checked = My.Settings.precache
         TokenBox.Text = My.Settings.RAWGToken
+        AutoReload.Checked = My.Settings.AutoReload
         updateColors()
     End Sub
 
@@ -214,5 +215,9 @@ Public Class Joysticks
 
     Private Sub TokenButton_Click(sender As Object, e As EventArgs) Handles TokenButton.Click
         My.Settings.RAWGToken = TokenBox.Text
+    End Sub
+
+    Private Sub CheckBox4_CheckedChanged(sender As Object, e As EventArgs) Handles AutoReload.CheckedChanged
+        My.Settings.AutoReload = AutoReload.Checked
     End Sub
 End Class

@@ -551,7 +551,11 @@ Public Class Main
             Try
                 If selectedgame.getDescription() = Nothing Then
                     description.Text = "DOWNLOADING"
-                    selectedgame = HTTP.updateMetaDataRAWG(selectedgame)
+                    If My.Settings.useTGDB Then
+                        selectedgame = HTTP.updateMetaDataTheGamesDB(selectedgame)
+                    Else
+                        selectedgame = HTTP.updateMetaDataRAWG(selectedgame)
+                    End If
                     description.Text = selectedgame.getDescription()
                     cover.ImageLocation = selectedgame.getImage()
                     description.ScrollBars = ScrollBars.Vertical
@@ -560,10 +564,11 @@ Public Class Main
                     MsgBox("Game already has metadata!")
                     metadataDownloaded = False
                 End If
-            Catch
+            Catch ex As exception
                 description.Text = Nothing
                 cover.Image = cover.ErrorImage
                 description.ScrollBars = ScrollBars.None
+                MsgBox(ex.Message)
             End Try
         ElseIf e.Button = MouseButtons.Right Then
             If metadataDownloaded Then

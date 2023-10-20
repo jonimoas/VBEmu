@@ -127,6 +127,7 @@ Public Class Joysticks
         PreviousSystemText.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         StartText.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         TokenBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
+        Gamesdbbox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         Me.BackColor = ColorTranslator.FromHtml("#080708")
         NextGameButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
         NextGenreButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
@@ -137,6 +138,7 @@ Public Class Joysticks
         StartButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
         OKButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
         TokenButton.BackColor = ColorTranslator.FromHtml("#FDCA40")
+        gamesdbsave.BackColor = ColorTranslator.FromHtml("#FDCA40")
         Return 0
     End Function
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -156,6 +158,9 @@ Public Class Joysticks
         CheckBox2.Checked = My.Settings.precache
         TokenBox.Text = My.Settings.RAWGToken
         AutoReload.Checked = My.Settings.AutoReload
+        Gamesdbbox.Text = My.Settings.TheGamesDBToken
+        RadioButton1.Checked = My.Settings.useTGDB
+        RadioButton2.Checked = Not My.Settings.useTGDB
         updateColors()
     End Sub
 
@@ -219,5 +224,19 @@ Public Class Joysticks
 
     Private Sub CheckBox4_CheckedChanged(sender As Object, e As EventArgs) Handles AutoReload.CheckedChanged
         My.Settings.AutoReload = AutoReload.Checked
+    End Sub
+
+    Private Sub gamesdbsave_Click(sender As Object, e As EventArgs) Handles gamesdbsave.Click
+        My.Settings.TheGamesDBToken = Gamesdbbox.Text
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+        RadioButton2.Checked = Not RadioButton1.Checked
+        My.Settings.useTGDB = RadioButton1.Checked
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+        RadioButton1.Checked = Not RadioButton2.Checked
+        My.Settings.useTGDB = RadioButton1.Checked
     End Sub
 End Class

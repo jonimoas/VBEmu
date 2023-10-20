@@ -17,7 +17,8 @@ Some unique features are:
 * Heavy use of threads, helping to avoid any freezes etc
 * Optimized gamelist parsing (thousands of roms in seconds)
 * Focus on big rom collections
-* Connectivity to RAWG.io, albeit on a basic level for now
+* Connectivity to RAWG.io
+* Connectivity to thegamesdb.net
 * Ability to directly download and store images and metadata
 
 ## USAGE:
@@ -63,12 +64,18 @@ The freeze UI option, if enabled, removes any threading, so the UI will freeze o
 
 In order to configure usage of the rawg.io rest API, you can get a token here:
 https://rawg.io/apidocs
+Then, paste the token in the joystick configuration screen, choose RAWG as your provider and click Save.
 
-Then, paste the token in the joystick configuration screen and click Save.
+## thegamesdb.net:
+
+In order to configure usage of thegamesdb.net rest API, you must have a dev token.
+Paste it on the config screen, save and choose TGDB as your provider.
+
+## METADATA DOWNLOAD
 
 If a game does not have metadata, you can left click on the image placeholder and an attempt will be made
-to download them from rawg.io.
-If the matched metadata is proper, you can right clock on the image and it will be downloaded 
+to download them from provider.
+If the matched metadata is proper, you can right click on the image and it will be downloaded 
 as a file and an xml text will be generated and appended to your current gamelist.xml
 There is a new option in the config to enable auto reload of the gamelist after a successful download.
 

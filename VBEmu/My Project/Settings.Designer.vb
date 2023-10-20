@@ -209,6 +209,30 @@ Namespace My
                 Me("AutoReload") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property TheGamesDBToken() As String
+            Get
+                Return CType(Me("TheGamesDBToken"),String)
+            End Get
+            Set
+                Me("TheGamesDBToken") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property useTGDB() As Boolean
+            Get
+                Return CType(Me("useTGDB"),Boolean)
+            End Get
+            Set
+                Me("useTGDB") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

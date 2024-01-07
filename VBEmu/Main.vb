@@ -644,7 +644,7 @@ Public Class Main
         End If
     End Sub
 
-    Private Sub description_DoubleClick(sender As Object, e As EventArgs) Handles description.DoubleClick
+    Private Sub description_DoubleClick(sender As Object, e As EventArgs) Handles description.DoubleClick, systemBox.DoubleClick
         If My.Settings.freeze Then
             buildWholeGameList({gamelist, consolelist.Item(systemBox.SelectedIndex + 1)})
         Else

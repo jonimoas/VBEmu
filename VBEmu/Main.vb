@@ -601,4 +601,55 @@ Public Class Main
             Next
         Next
     End Sub
+
+    Private Sub buildWholeGameList(ByVal params)
+        ProgressBar1.InvokeIfRequired(Sub()
+                                          ProgressBar1.Maximum = gamelist.Count
+                                          ProgressBar1.Value = 0
+                                      End Sub)
+        Dim localgamelist = params(0)
+        Dim localsystem = params(1)
+        For Each g In localgamelist
+            Try
+                Dim currentgame As Game
+                If g.getDescription() = Nothing Then
+                    If My.Settings.useTGDB Then
+                        currentgame = updateMetaDataTheGamesDB(g, globalextensions)
+                    Else
+                        currentgame = updateMetaDataRAWG(g, globalextensions)
+                    End If
+                    If Not currentgame.getDescription() = Nothing Then
+                        If Not IO.File.Exists(localsystem.getGamelist) Then
+                            createGameList(localsystem, currentgame)
+                        Else
+                            updateGamelist(localsystem, currentgame)
+                        End If
+                    End If
+                End If
+                currentgame = Nothing
+                ProgressBar1.InvokeIfRequired(Sub()
+                                                  ProgressBar1.PerformStep()
+                                              End Sub)
+            Catch
+                ProgressBar1.InvokeIfRequired(Sub()
+                                                  ProgressBar1.PerformStep()
+                                              End Sub)
+            End Try
+        Next
+        If My.Settings.AutoReload Then
+            gamelistavailable = True
+            TextBox1.Text = ""
+            gameBox.DataSource = New StringCollection
+            reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())
+        End If
+    End Sub
+
+    Private Sub description_DoubleClick(sender As Object, e As EventArgs) Handles description.DoubleClick
+        If My.Settings.freeze Then
+            buildWholeGameList({gamelist, consolelist.Item(systemBox.SelectedIndex + 1)})
+        Else
+            t = New Threading.Thread(AddressOf buildWholeGameList)
+            t.Start((New Object() {gamelist, consolelist.Item(systemBox.SelectedIndex + 1)}))
+        End If
+    End Sub
 End Class

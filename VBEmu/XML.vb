@@ -29,8 +29,9 @@ Module XML
             Dim developer = doc.GetElementsByTagName("developer")(0).InnerText
             Dim genre = doc.GetElementsByTagName("genre")(0).InnerText
             If files.Contains(System.IO.Directory.GetParent(filename).ToString + "\" + path.Remove(0, 2).Trim) Then
-                If Not name = "" Then
+                If Not doc.InnerText = "" Then
                     games.Add(New Game(path, name, image, genre, developer, desc, id))
+                    id = id + 1
                 End If
             End If
 
@@ -106,5 +107,14 @@ Module XML
         Dim currentGameList = My.Computer.FileSystem.ReadAllText(s.getGamelist())
         currentGameList = currentGameList.Insert(currentGameList.IndexOf("</game>") + 7, vbNewLine + XMLstring)
         My.Computer.FileSystem.WriteAllText(s.getGamelist(), currentGameList, False)
+    End Sub
+
+    Sub createGameList(ByVal s As gameSystem, g As Game)
+        My.Computer.FileSystem.CreateDirectory(s.getPath() + "\images")
+        g = downloadImage(g, s)
+        Dim XMLstring = buildXML(g)
+        Dim currentGameList = "<gameList>" + vbNewLine + XMLstring + vbNewLine + "</gameList>"
+        File.Create(s.getPath() + "\gamelist.xml").Dispose()
+        My.Computer.FileSystem.WriteAllText(s.getPath() + "\gamelist.xml", currentGameList, False)
     End Sub
 End Module

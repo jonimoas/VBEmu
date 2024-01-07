@@ -572,10 +572,14 @@ Public Class Main
             End Try
         ElseIf e.Button = MouseButtons.Right Then
             If metadataDownloaded Then
-                updateGamelist(consolelist.Item(systemBox.SelectedIndex + 1), selectedgame)
+                If gamelistavailable Then
+                    updateGamelist(consolelist.Item(systemBox.SelectedIndex + 1), selectedgame)
+                Else
+                    createGameList(consolelist.Item(systemBox.SelectedIndex + 1), selectedgame)
+                End If
                 metadataDownloaded = False
                 If My.Settings.AutoReload Then
-                    metadataDownloaded = False
+                    gamelistavailable = True
                     TextBox1.Text = ""
                     gameBox.DataSource = New StringCollection
                     reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())

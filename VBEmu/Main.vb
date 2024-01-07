@@ -24,6 +24,7 @@ Public Class Main
     Dim globalgenrelist = New Collection
     Dim globaldevlist = New Collection
     Dim globalgamenames = New Collection
+    Dim globalextensions = New Collection
     Dim metadataDownloaded = False
     Declare Function joyGetPosEx Lib "winmm.dll" (ByVal uJoyID As Integer, ByRef pji As JOYINFOEX) As Integer
 
@@ -140,6 +141,7 @@ Public Class Main
         rs.FindAllControls(Me)
         Me.Bounds = Screen.GetWorkingArea(Me)
         rs.ResizeAllControls(Me)
+        storeGlobalExtensions()
         joyThread = New Threading.Thread(AddressOf JoyPoll)
         joyThread.Start()
     End Sub
@@ -552,9 +554,9 @@ Public Class Main
                 If selectedgame.getDescription() = Nothing Then
                     description.Text = "DOWNLOADING"
                     If My.Settings.useTGDB Then
-                        selectedgame = HTTP.updateMetaDataTheGamesDB(selectedgame)
+                        selectedgame = updateMetaDataTheGamesDB(selectedgame, globalextensions)
                     Else
-                        selectedgame = HTTP.updateMetaDataRAWG(selectedgame)
+                        selectedgame = updateMetaDataRAWG(selectedgame, globalextensions)
                     End If
                     description.Text = selectedgame.getDescription()
                     cover.ImageLocation = selectedgame.getImage()
@@ -590,4 +592,13 @@ Public Class Main
         End If
     End Sub
 
+    Private Sub storeGlobalExtensions()
+        For Each c In consolelist
+            For Each e In c.getExtensions()
+                If Not globalextensions.contains(e.Trim()) And e.Trim().length > 0 Then
+                    globalextensions.Add(e.Trim(), e.Trim())
+                End If
+            Next
+        Next
+    End Sub
 End Class

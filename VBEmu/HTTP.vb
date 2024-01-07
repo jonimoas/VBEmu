@@ -4,7 +4,7 @@ Imports System.Web.Script.Serialization
 Module HTTP
     Dim TGDBdevelopers As String = Nothing
     Dim TGDBgenres As String = Nothing
-    Function updateMetaDataRAWG(ByVal g As Game)
+    Function updateMetaDataRAWG(ByVal g As Game, ByVal extensions As Collection)
         Dim myReq As HttpWebRequest
         Dim myResp As HttpWebResponse
         Dim myReader As StreamReader
@@ -13,6 +13,9 @@ Module HTTP
         If g.getName().indexOf("(") > 0 Then
             sanitizedName = g.getName().Substring(0, g.getName().indexOf("("))
         End If
+        For Each e In extensions
+            sanitizedName = sanitizedName.Replace("." + e, "")
+        Next
         myReq = HttpWebRequest.Create("https://api.rawg.io/api/games?key=" + My.Settings.RAWGToken + "&search=" + sanitizedName)
         myReq.Method = "GET"
         myResp = myReq.GetResponse()
@@ -34,7 +37,7 @@ Module HTTP
         Dim image = jsonResult("background_image")
         Return New Game(g.getpath(), name, image, genre, developer, descriptionText, g.getId())
     End Function
-    Function updateMetaDataTheGamesDB(ByVal g As Game)
+    Function updateMetaDataTheGamesDB(ByVal g As Game, ByVal extensions As Collection)
         downloadDevelopersGenresTGDB()
         Dim myReq As HttpWebRequest
         Dim myResp As HttpWebResponse
@@ -44,6 +47,9 @@ Module HTTP
         If g.getName().indexOf("(") > 0 Then
             sanitizedName = g.getName().Substring(0, g.getName().indexOf("("))
         End If
+        For Each e In extensions
+            sanitizedName = sanitizedName.Replace("." + e, "")
+        Next
         myReq = HttpWebRequest.Create("https://api.thegamesdb.net/v1.1/Games/ByGameName?apikey=" + My.Settings.TheGamesDBToken + "&include=boxart&fields=overview,genres&name=" + sanitizedName)
         myReq.Method = "GET"
         myResp = myReq.GetResponse()
@@ -53,7 +59,13 @@ Module HTTP
         Dim gameID = jsonResult("data")("games")(0)("id")
         Dim descriptionText = jsonResult("data")("games")(0)("overview")
         Dim name = jsonResult("data")("games")(0)("game_title")
+        Dim images = jsonResult("include")("boxart")("data")(gameID)
         Dim image = jsonResult("include")("boxart")("base_url")("medium") + jsonResult("include")("boxart")("data")(gameID)(0)("filename")
+        For Each i In images
+            If i("side") = "front" Then
+                image = jsonResult("include")("boxart")("base_url")("medium") + i("filename")
+            End If
+        Next
         Dim genreJson As Object = New JavaScriptSerializer().Deserialize(Of Object)(TGDBgenres)
         Dim genre = Nothing
         Dim developer = Nothing

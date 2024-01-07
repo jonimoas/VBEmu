@@ -63,6 +63,7 @@ Module XML
             id = id + 1
             Main.ProgressBar1.PerformStep()
         Next
+        reader.Close()
         Return games
     End Function
     Function readGamesystem(ByVal filename)

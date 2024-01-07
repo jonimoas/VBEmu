@@ -79,4 +79,9 @@ If the matched metadata is proper, you can right click on the image and it will 
 as a file and an xml text will be generated and appended to your current gamelist.xml
 There is a new option in the config to enable auto reload of the gamelist after a successful download.
 
+## WHOLE SYSTEM METADATA DOWNLOAD
+
+When double clicking on the console list or the description box, the application will try
+to download metadata for each game of the current system that is missing.
+
 ![Screenshot](/screenshot.png)

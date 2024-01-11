@@ -158,6 +158,7 @@ Public Class Main
                     Else
                         description.Text = Nothing
                     End If
+                    cover.Image = cover.ErrorImage
                     If Not g.getImage() Is Nothing Then
                         cover.ImageLocation = consolelist.Item(systemBox.SelectedIndex + 1).getPath() + g.getImage()
                     Else

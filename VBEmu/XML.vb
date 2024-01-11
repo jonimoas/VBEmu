@@ -34,7 +34,12 @@ Module XML
                     id = id + 1
                 End If
             End If
-
+            path = Nothing
+            name = Nothing
+            desc = Nothing
+            image = Nothing
+            developer = Nothing
+            genre = Nothing
             Main.ProgressBar1.PerformStep()
         Loop While Not reader.EOF
         id = id + 1

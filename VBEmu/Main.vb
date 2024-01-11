@@ -129,12 +129,13 @@ Public Class Main
             systemBox.Items.Add(c.getfullName())
         Next
         systemBox.SelectedIndex = 0
-        Dim i = 1
+        Dim i = 2
         If My.Settings.precache Then
-            For Each c In consolelist
+            While i <= consolelist.Count
                 updateGames({folder, i, "", False})
                 i += 1
-            Next
+            End While
+            updateGames({folder, 1, "", False})
         End If
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Dim rs As New Resizer

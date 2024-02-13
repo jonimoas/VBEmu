@@ -22,6 +22,7 @@ Partial Class Main
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.gameBox = New System.Windows.Forms.ListBox()
         Me.description = New System.Windows.Forms.TextBox()
@@ -34,9 +35,15 @@ Partial Class Main
         Me.saveScript = New System.Windows.Forms.SaveFileDialog()
         Me.openGamelist = New System.Windows.Forms.OpenFileDialog()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.save = New System.Windows.Forms.Button()
         Me.cover = New System.Windows.Forms.PictureBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DownloadMetadataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveMetadataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateWholeSystemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowOptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GenrateScriptToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.cover, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'gameBox
@@ -105,7 +112,7 @@ Partial Class Main
         Me.ProgressBar1.Location = New System.Drawing.Point(1, 508)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ProgressBar1.Size = New System.Drawing.Size(346, 40)
+        Me.ProgressBar1.Size = New System.Drawing.Size(505, 40)
         Me.ProgressBar1.Step = 1
         Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.ProgressBar1.TabIndex = 10
@@ -140,17 +147,6 @@ Partial Class Main
         Me.TextBox1.Size = New System.Drawing.Size(346, 26)
         Me.TextBox1.TabIndex = 13
         '
-        'save
-        '
-        Me.save.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.save.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.save.Location = New System.Drawing.Point(389, 508)
-        Me.save.Name = "save"
-        Me.save.Size = New System.Drawing.Size(110, 40)
-        Me.save.TabIndex = 11
-        Me.save.Text = "Script"
-        Me.save.UseVisualStyleBackColor = True
-        '
         'cover
         '
         Me.cover.BackColor = System.Drawing.SystemColors.ControlLightLight
@@ -165,16 +161,52 @@ Partial Class Main
         Me.cover.TabIndex = 4
         Me.cover.TabStop = False
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DownloadMetadataToolStripMenuItem, Me.SaveMetadataToolStripMenuItem, Me.UpdateWholeSystemToolStripMenuItem, Me.ShowOptionsToolStripMenuItem, Me.GenrateScriptToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(191, 114)
+        '
+        'DownloadMetadataToolStripMenuItem
+        '
+        Me.DownloadMetadataToolStripMenuItem.Name = "DownloadMetadataToolStripMenuItem"
+        Me.DownloadMetadataToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.DownloadMetadataToolStripMenuItem.Text = "Download Metadata"
+        '
+        'SaveMetadataToolStripMenuItem
+        '
+        Me.SaveMetadataToolStripMenuItem.Name = "SaveMetadataToolStripMenuItem"
+        Me.SaveMetadataToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.SaveMetadataToolStripMenuItem.Text = "Save Metadata"
+        '
+        'UpdateWholeSystemToolStripMenuItem
+        '
+        Me.UpdateWholeSystemToolStripMenuItem.Name = "UpdateWholeSystemToolStripMenuItem"
+        Me.UpdateWholeSystemToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.UpdateWholeSystemToolStripMenuItem.Text = "Update Whole System"
+        '
+        'ShowOptionsToolStripMenuItem
+        '
+        Me.ShowOptionsToolStripMenuItem.Name = "ShowOptionsToolStripMenuItem"
+        Me.ShowOptionsToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.ShowOptionsToolStripMenuItem.Text = "Show Options"
+        '
+        'GenrateScriptToolStripMenuItem
+        '
+        Me.GenrateScriptToolStripMenuItem.Name = "GenrateScriptToolStripMenuItem"
+        Me.GenrateScriptToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.GenrateScriptToolStripMenuItem.Text = "Genrate Script"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.ClientSize = New System.Drawing.Size(634, 550)
+        Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.ControlBox = False
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.quit)
-        Me.Controls.Add(Me.save)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.devBox)
         Me.Controls.Add(Me.genreBox)
@@ -189,6 +221,7 @@ Partial Class Main
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         CType(Me.cover, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -205,5 +238,10 @@ Partial Class Main
     Friend WithEvents saveScript As System.Windows.Forms.SaveFileDialog
     Friend WithEvents openGamelist As System.Windows.Forms.OpenFileDialog
     Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents save As Button
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents DownloadMetadataToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SaveMetadataToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UpdateWholeSystemToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShowOptionsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GenrateScriptToolStripMenuItem As ToolStripMenuItem
 End Class

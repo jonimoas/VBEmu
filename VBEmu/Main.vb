@@ -96,9 +96,7 @@ Public Class Main
         gameBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         description.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         Me.BackColor = ColorTranslator.FromHtml("#080708")
-        save.BackColor = ColorTranslator.FromHtml("#FDCA40")
         quit.BackColor = ColorTranslator.FromHtml("#DF2935")
-        save.ForeColor = ColorTranslator.FromHtml("#080708")
         genreBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         devBox.BackColor = ColorTranslator.FromHtml("#E6E8E6")
         ProgressBar1.ForeColor = ColorTranslator.FromHtml("#0066CC")
@@ -268,11 +266,6 @@ Public Class Main
             Return
         End Try
 
-    End Sub
-
-    Private Sub save_Click(sender As Object, e As EventArgs) Handles save.Click
-        saveScript.FileName = selectedgame.getName + ".bat"
-        saveScript.ShowDialog()
     End Sub
 
     Private Sub SaveFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles saveScript.FileOk
@@ -538,60 +531,12 @@ Public Class Main
 
     End Sub
 
-    Private Sub Main_DoubleClick(sender As Object, e As EventArgs) Handles MyBase.DoubleClick
-        Joysticks.Show()
-    End Sub
-
     Private Sub Main_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         windowFocus = True
     End Sub
 
     Private Sub Main_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         windowFocus = False
-    End Sub
-
-    Private Sub cover_Click(sender As Object, e As MouseEventArgs) Handles cover.Click
-        If e.Button = MouseButtons.Left Then
-            Try
-                If selectedgame.getDescription() = Nothing Then
-                    description.Text = "DOWNLOADING"
-                    If My.Settings.useTGDB Then
-                        selectedgame = updateMetaDataTheGamesDB(selectedgame, globalextensions)
-                    Else
-                        selectedgame = updateMetaDataRAWG(selectedgame, globalextensions)
-                    End If
-                    description.Text = selectedgame.getDescription()
-                    cover.ImageLocation = selectedgame.getImage()
-                    description.ScrollBars = ScrollBars.Vertical
-                    metadataDownloaded = True
-                Else
-                    MsgBox("Game already has metadata!")
-                    metadataDownloaded = False
-                End If
-            Catch ex As exception
-                description.Text = Nothing
-                cover.Image = cover.ErrorImage
-                description.ScrollBars = ScrollBars.None
-                MsgBox(ex.Message)
-            End Try
-        ElseIf e.Button = MouseButtons.Right Then
-            If metadataDownloaded Then
-                If gamelistavailable Then
-                    updateGamelist(consolelist.Item(systemBox.SelectedIndex + 1), selectedgame)
-                Else
-                    createGameList(consolelist.Item(systemBox.SelectedIndex + 1), selectedgame)
-                End If
-                metadataDownloaded = False
-                If My.Settings.AutoReload Then
-                    gamelistavailable = True
-                    TextBox1.Text = ""
-                    gameBox.DataSource = New StringCollection
-                    reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())
-                End If
-            Else
-                MsgBox("This metadata is already stored!")
-            End If
-        End If
     End Sub
 
     Private Sub storeGlobalExtensions()
@@ -646,12 +591,65 @@ Public Class Main
         End If
     End Sub
 
-    Private Sub description_DoubleClick(sender As Object, e As EventArgs) Handles description.DoubleClick, systemBox.DoubleClick
+    Private Sub DownloadMetadataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DownloadMetadataToolStripMenuItem.Click
+        Try
+            If selectedgame.getDescription() = Nothing Then
+                description.Text = "DOWNLOADING"
+                If My.Settings.useTGDB Then
+                    selectedgame = updateMetaDataTheGamesDB(selectedgame, globalextensions)
+                Else
+                    selectedgame = updateMetaDataRAWG(selectedgame, globalextensions)
+                End If
+                description.Text = selectedgame.getDescription()
+                cover.ImageLocation = selectedgame.getImage()
+                description.ScrollBars = ScrollBars.Vertical
+                metadataDownloaded = True
+            Else
+                MsgBox("Game already has metadata!")
+                metadataDownloaded = False
+            End If
+        Catch ex As Exception
+            description.Text = Nothing
+            cover.Image = cover.ErrorImage
+            description.ScrollBars = ScrollBars.None
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub SaveMetadataToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveMetadataToolStripMenuItem.Click
+        If metadataDownloaded Then
+            If gamelistavailable Then
+                updateGamelist(consolelist.Item(systemBox.SelectedIndex + 1), selectedgame)
+            Else
+                createGameList(consolelist.Item(systemBox.SelectedIndex + 1), selectedgame)
+            End If
+            metadataDownloaded = False
+            If My.Settings.AutoReload Then
+                gamelistavailable = True
+                TextBox1.Text = ""
+                gameBox.DataSource = New StringCollection
+                reloadGames(consolelist.Item(systemBox.SelectedIndex + 1).getPath())
+            End If
+        Else
+            MsgBox("This metadata is already stored!")
+        End If
+    End Sub
+
+    Private Sub UpdateWholeSystemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateWholeSystemToolStripMenuItem.Click
         If My.Settings.freeze Then
             buildWholeGameList({gamelist, consolelist.Item(systemBox.SelectedIndex + 1)})
         Else
             t = New Threading.Thread(AddressOf buildWholeGameList)
             t.Start((New Object() {gamelist, consolelist.Item(systemBox.SelectedIndex + 1)}))
         End If
+    End Sub
+
+    Private Sub ShowOptionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowOptionsToolStripMenuItem.Click
+        Joysticks.Show()
+    End Sub
+
+    Private Sub GenrateScriptToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenrateScriptToolStripMenuItem.Click
+        saveScript.FileName = selectedgame.getName + ".bat"
+        saveScript.ShowDialog()
     End Sub
 End Class

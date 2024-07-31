@@ -239,4 +239,8 @@ Public Class Joysticks
         RadioButton1.Checked = Not RadioButton2.Checked
         My.Settings.useTGDB = RadioButton1.Checked
     End Sub
+
+    Private Sub CheckBox5_CheckedChanged(sender As Object, e As EventArgs)
+        My.Settings.useXInput = CheckBox5.Checked
+    End Sub
 End Class

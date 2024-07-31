@@ -27,7 +27,7 @@ Public Class Main
     Dim globalextensions = New Collection
     Dim metadataDownloaded = False
     Declare Function joyGetPosEx Lib "winmm.dll" (ByVal uJoyID As Integer, ByRef pji As JOYINFOEX) As Integer
-
+    Dim controller As SharpDX.XInput.Controller = New SharpDX.XInput.Controller(SharpDX.XInput.UserIndex.One)
     <StructLayout(LayoutKind.Sequential)>
     Public Structure JOYINFOEX
         Public dwSize As Integer
@@ -47,7 +47,7 @@ Public Class Main
 
     Dim myjoyEX As JOYINFOEX
 
-    Private Sub JoyPoll()
+    Private Sub DInputHandler()
         While True
             If Not joyConf And windowFocus Then
 
@@ -86,6 +86,44 @@ Public Class Main
                                                 End Sub)
                     End Select
                 End With
+            End If
+            Thread.Sleep(100)
+        End While
+    End Sub
+
+    Private Sub XInputHandler()
+        While True And controller.IsConnected
+            If Not joyConf And windowFocus Then
+                Select Case controller.GetState().Gamepad.Buttons
+                    Case SharpDX.XInput.GamepadButtonFlags.A
+                        Me.InvokeIfRequired(Sub()
+                                                ProcessCmdKey(New Message(), Keys.Enter)
+                                            End Sub)
+                    Case SharpDX.XInput.GamepadButtonFlags.LeftShoulder
+                        Me.InvokeIfRequired(Sub()
+                                                ProcessCmdKey(New Message(), Keys.Left)
+                                            End Sub)
+                    Case SharpDX.XInput.GamepadButtonFlags.RightShoulder
+                        Me.InvokeIfRequired(Sub()
+                                                ProcessCmdKey(New Message(), Keys.Right)
+                                            End Sub)
+                    Case SharpDX.XInput.GamepadButtonFlags.X
+                        Me.InvokeIfRequired(Sub()
+                                                ProcessCmdKey(New Message(), Keys.OemPeriod)
+                                            End Sub)
+                    Case SharpDX.XInput.GamepadButtonFlags.Y
+                        Me.InvokeIfRequired(Sub()
+                                                ProcessCmdKey(New Message(), Keys.Oemcomma)
+                                            End Sub)
+                    Case SharpDX.XInput.GamepadButtonFlags.DPadUp
+                        Me.InvokeIfRequired(Sub()
+                                                ProcessCmdKey(New Message(), Keys.Up)
+                                            End Sub)
+                    Case SharpDX.XInput.GamepadButtonFlags.DPadDown
+                        Me.InvokeIfRequired(Sub()
+                                                ProcessCmdKey(New Message(), Keys.Down)
+                                            End Sub)
+                End Select
             End If
             Thread.Sleep(100)
         End While
@@ -141,7 +179,11 @@ Public Class Main
         Me.Bounds = Screen.GetWorkingArea(Me)
         rs.ResizeAllControls(Me)
         storeGlobalExtensions()
-        joyThread = New Threading.Thread(AddressOf JoyPoll)
+        If My.Settings.useXInput Then
+            joyThread = New Threading.Thread(AddressOf XInputHandler)
+        Else
+            joyThread = New Threading.Thread(AddressOf DInputHandler)
+        End If
         joyThread.Start()
     End Sub
 

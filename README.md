@@ -1,6 +1,6 @@
 # VBEmu
 
-Simple emulator frontend using the file formats of EmulationStation and connected to rawg.io, focused on simplicity and speed.
+Simple emulator frontend using the file formats of EmulationStation and connected to rawg.io and thegamesdb.net, focused on simplicity and speed.
 Good for users with huge collections.
 
 ## Features
@@ -11,6 +11,7 @@ It includes all the usual features such as:
 - Ability to filter games by genre/publisher (requires gamelist xmls)
 - Pure keyboard navigation
 - Fully customizable controller input (limited to the first controller for now)
+- Standard XInput controller input
 
 Some unique features are:
 
@@ -22,36 +23,37 @@ Some unique features are:
 - Connectivity to thegamesdb.net
 - Ability to directly download and store images and metadata
 
-## USAGE:
+## Usage
 
 The application uses es_systems.cfg and gamelist.xml files like emulationstation
 you need to locate your es_systems file on first run and the gamelist xmls and image folders need to be in the directory of your collections.
-see samples.txt for more information on the files used
+See samples.txt for more information on the files used.
+To adjust settings such as the metadata source or controller options, open the options from the context menu.
 
 To run a rom simply double click on it or press the enter button.
 
-## NAVIGATION:
+## Navigation
 
-| button     | function      |
-| ---------- | ------------- |
-| up-down    | change game   |
-| left-right | change system |
-| enter      | run           |
-| comma-dot  | change genre  |
-| escape     | close         |
-| space      | search        |
+| keyboard   | xinput    | function      |
+| ---------- | --------- | ------------- |
+| up-down    | up-down   | change game   |
+| left-right | shoulders | change system |
+| enter      | A         | run           |
+| comma-dot  | X-Y       | change genre  |
+| escape     | none      | close         |
+| space      | none      | search        |
 
-## SEARCH:
+## Search
 
 Pressing the space button, or clicking above the gamelist and typing, allows you to search
 games by name
 
-## CONTROLLER:
+## DirectInput Controller:
 
 You can double click in a black area, and the joystick configuration window will show.
 Click on each command, press the button on the joystick and wait until the textbox fills.
 
-## CACHING:
+## Caching
 
 You can toggle the caching from the joystick config screen. Live caching enables saves the parsed xml data
 on the first run and pre caching makes the app load everything on startup, obviously costing in time.

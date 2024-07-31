@@ -47,41 +47,42 @@ Partial Class Joysticks
         Me.Gamesdbbox = New System.Windows.Forms.TextBox()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'NextGameText
         '
         Me.NextGameText.Location = New System.Drawing.Point(291, 12)
         Me.NextGameText.Name = "NextGameText"
-        Me.NextGameText.Size = New System.Drawing.Size(472, 20)
+        Me.NextGameText.Size = New System.Drawing.Size(562, 20)
         Me.NextGameText.TabIndex = 0
         '
         'PreviousGameText
         '
         Me.PreviousGameText.Location = New System.Drawing.Point(291, 38)
         Me.PreviousGameText.Name = "PreviousGameText"
-        Me.PreviousGameText.Size = New System.Drawing.Size(472, 20)
+        Me.PreviousGameText.Size = New System.Drawing.Size(562, 20)
         Me.PreviousGameText.TabIndex = 1
         '
         'NextGenreText
         '
         Me.NextGenreText.Location = New System.Drawing.Point(291, 64)
         Me.NextGenreText.Name = "NextGenreText"
-        Me.NextGenreText.Size = New System.Drawing.Size(472, 20)
+        Me.NextGenreText.Size = New System.Drawing.Size(562, 20)
         Me.NextGenreText.TabIndex = 2
         '
         'PreviousGenreText
         '
         Me.PreviousGenreText.Location = New System.Drawing.Point(291, 90)
         Me.PreviousGenreText.Name = "PreviousGenreText"
-        Me.PreviousGenreText.Size = New System.Drawing.Size(472, 20)
+        Me.PreviousGenreText.Size = New System.Drawing.Size(562, 20)
         Me.PreviousGenreText.TabIndex = 3
         '
         'NextSystemText
         '
         Me.NextSystemText.Location = New System.Drawing.Point(291, 116)
         Me.NextSystemText.Name = "NextSystemText"
-        Me.NextSystemText.Size = New System.Drawing.Size(472, 20)
+        Me.NextSystemText.Size = New System.Drawing.Size(562, 20)
         Me.NextSystemText.TabIndex = 4
         '
         'NextGameButton
@@ -151,19 +152,19 @@ Partial Class Joysticks
         '
         Me.StartText.Location = New System.Drawing.Point(291, 168)
         Me.StartText.Name = "StartText"
-        Me.StartText.Size = New System.Drawing.Size(472, 20)
+        Me.StartText.Size = New System.Drawing.Size(562, 20)
         Me.StartText.TabIndex = 12
         '
         'PreviousSystemText
         '
         Me.PreviousSystemText.Location = New System.Drawing.Point(291, 142)
         Me.PreviousSystemText.Name = "PreviousSystemText"
-        Me.PreviousSystemText.Size = New System.Drawing.Size(472, 20)
+        Me.PreviousSystemText.Size = New System.Drawing.Size(562, 20)
         Me.PreviousSystemText.TabIndex = 11
         '
         'OKButton
         '
-        Me.OKButton.Location = New System.Drawing.Point(676, 255)
+        Me.OKButton.Location = New System.Drawing.Point(766, 258)
         Me.OKButton.Name = "OKButton"
         Me.OKButton.Size = New System.Drawing.Size(87, 26)
         Me.OKButton.TabIndex = 15
@@ -216,7 +217,7 @@ Partial Class Joysticks
         '
         Me.TokenBox.Location = New System.Drawing.Point(291, 194)
         Me.TokenBox.Name = "TokenBox"
-        Me.TokenBox.Size = New System.Drawing.Size(472, 20)
+        Me.TokenBox.Size = New System.Drawing.Size(562, 20)
         Me.TokenBox.TabIndex = 19
         '
         'AutoReload
@@ -243,7 +244,7 @@ Partial Class Joysticks
         '
         Me.Gamesdbbox.Location = New System.Drawing.Point(291, 221)
         Me.Gamesdbbox.Name = "Gamesdbbox"
-        Me.Gamesdbbox.Size = New System.Drawing.Size(472, 20)
+        Me.Gamesdbbox.Size = New System.Drawing.Size(562, 20)
         Me.Gamesdbbox.TabIndex = 22
         '
         'RadioButton1
@@ -270,12 +271,25 @@ Partial Class Joysticks
         Me.RadioButton2.Text = "Use RAWG.io"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
+        'CheckBox5
+        '
+        Me.CheckBox5.AutoSize = True
+        Me.CheckBox5.ForeColor = System.Drawing.Color.White
+        Me.CheckBox5.Location = New System.Drawing.Point(676, 263)
+        Me.CheckBox5.Name = "CheckBox5"
+        Me.CheckBox5.Size = New System.Drawing.Size(79, 17)
+        Me.CheckBox5.TabIndex = 26
+        Me.CheckBox5.Text = "Use XInput"
+        Me.CheckBox5.UseVisualStyleBackColor = True
+        AddHandler Me.CheckBox5.CheckedChanged, AddressOf Me.CheckBox5_CheckedChanged
+        '
         'Joysticks
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(768, 293)
+        Me.ClientSize = New System.Drawing.Size(865, 293)
         Me.ControlBox = False
+        Me.Controls.Add(Me.CheckBox5)
         Me.Controls.Add(Me.RadioButton2)
         Me.Controls.Add(Me.RadioButton1)
         Me.Controls.Add(Me.gamesdbsave)
@@ -332,4 +346,5 @@ Partial Class Joysticks
     Friend WithEvents Gamesdbbox As TextBox
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents CheckBox5 As CheckBox
 End Class

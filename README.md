@@ -58,6 +58,8 @@ Click on each command, press the button on the joystick and wait until the textb
 You can toggle the caching from the joystick config screen. Live caching enables saves the parsed xml data
 on the first run and pre caching makes the app load everything on startup, obviously costing in time.
 The freeze UI option, if enabled, removes any threading, so the UI will freeze on any loading.
+If the precache options cause delays, you can click on the precache text on the splash screen
+to disable it, and then restart the app.
 
 ## RAWG.io:
 

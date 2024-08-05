@@ -37,4 +37,9 @@
         Copyright.Text = ""
     End Sub
 
+    Private Sub Version_Click(sender As Object, e As EventArgs) Handles Version.Click
+        My.Settings.precache = False
+        My.Settings.Save()
+        End
+    End Sub
 End Class

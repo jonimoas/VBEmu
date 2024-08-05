@@ -24,8 +24,8 @@ Partial Class SplashScreen1
     Private Sub InitializeComponent()
         Me.ApplicationTitle = New System.Windows.Forms.Label()
         Me.DetailsLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
-        Me.Version = New System.Windows.Forms.Label()
         Me.Copyright = New System.Windows.Forms.Label()
+        Me.Version = New System.Windows.Forms.Label()
         Me.MainLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
         Me.DetailsLayoutPanel.SuspendLayout()
         Me.MainLayoutPanel.SuspendLayout()
@@ -59,17 +59,6 @@ Partial Class SplashScreen1
         Me.DetailsLayoutPanel.Size = New System.Drawing.Size(247, 55)
         Me.DetailsLayoutPanel.TabIndex = 1
         '
-        'Version
-        '
-        Me.Version.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Version.BackColor = System.Drawing.Color.Transparent
-        Me.Version.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Version.Location = New System.Drawing.Point(3, 3)
-        Me.Version.Name = "Version"
-        Me.Version.Size = New System.Drawing.Size(241, 20)
-        Me.Version.TabIndex = 1
-        Me.Version.Text = "Version {0}.{1:00}"
-        '
         'Copyright
         '
         Me.Copyright.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -80,6 +69,17 @@ Partial Class SplashScreen1
         Me.Copyright.Size = New System.Drawing.Size(241, 22)
         Me.Copyright.TabIndex = 2
         Me.Copyright.Text = "Copyright"
+        '
+        'Version
+        '
+        Me.Version.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Version.BackColor = System.Drawing.Color.Transparent
+        Me.Version.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Version.Location = New System.Drawing.Point(3, 3)
+        Me.Version.Name = "Version"
+        Me.Version.Size = New System.Drawing.Size(241, 20)
+        Me.Version.TabIndex = 1
+        Me.Version.Text = "Version {0}.{1:00}"
         '
         'MainLayoutPanel
         '

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|C:\\Users\\User\\Documents\\GitHub\\VBEmu\\vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|c:\\users\\user\\documents\\github\\vbemu\\vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
@@ -10,20 +14,12 @@
       "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|VBEmu||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|c:\\users\\user\\documents\\github\\vbemu\\vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|C:\\Users\\User\\Documents\\GitHub\\VBEmu\\vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|c:\\users\\user\\documents\\github\\vbemu\\vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|c:\\users\\user\\documents\\github\\vbemu\\vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|C:\\Users\\User\\Documents\\GitHub\\VBEmu\\vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|c:\\users\\user\\documents\\github\\vbemu\\vbemu\\my project\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
-      "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\my project\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,11 +29,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Joysticks.vb [Design]",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Joysticks.vb",
               "RelativeDocumentMoniker": "VBEmu\\Joysticks.vb",
@@ -49,38 +45,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "VBEmu",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\VBEmu.vbproj",
               "RelativeDocumentMoniker": "VBEmu\\VBEmu.vbproj",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\VBEmu.vbproj",
               "RelativeToolTip": "VBEmu\\VBEmu.vbproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-07-31T18:01:41.105Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-31T18:01:41.105Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Joysticks.vb",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Joysticks.vb",
               "RelativeDocumentMoniker": "VBEmu\\Joysticks.vb",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Joysticks.vb",
               "RelativeToolTip": "VBEmu\\Joysticks.vb",
-              "ViewState": "AQIAABAAAAAAAAAAAAAgwDcAAAA8AAAA",
+              "ViewState": "AQIAAI0AAAAAAAAAAAAqwKMAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-07-31T18:01:03.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Main.vb",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Main.vb",
               "RelativeDocumentMoniker": "VBEmu\\Main.vb",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Main.vb",
               "RelativeToolTip": "VBEmu\\Main.vb",
-              "ViewState": "AQIAACgAAAAAAAAAAAAmwF4AAAAtAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAABIAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-07-31T17:36:28.719Z",
               "EditorCaption": ""
@@ -94,8 +89,7 @@
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Main.vb [Design]",
               "RelativeToolTip": "VBEmu\\Main.vb [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-07-31T17:36:00.972Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-07-31T17:36:00.972Z"
             }
           ]
         }

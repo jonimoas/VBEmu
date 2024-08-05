@@ -161,6 +161,7 @@ Public Class Joysticks
         Gamesdbbox.Text = My.Settings.TheGamesDBToken
         RadioButton1.Checked = My.Settings.useTGDB
         RadioButton2.Checked = Not My.Settings.useTGDB
+        CheckBox5.Checked = My.Settings.useXInput
         updateColors()
     End Sub
 

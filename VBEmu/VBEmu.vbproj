@@ -28,6 +28,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -100,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="InputTranslator.vb" />
     <Compile Include="Joysticks.Designer.vb">
       <DependentUpon>Joysticks.vb</DependentUpon>
     </Compile>
@@ -107,6 +110,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HTTP.vb" />
+    <Compile Include="Updaters.vb" />
     <Compile Include="Resizer.vb" />
     <Compile Include="Extensions.vb" />
     <Compile Include="gameSystem.vb" />

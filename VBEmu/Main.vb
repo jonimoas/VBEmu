@@ -26,6 +26,8 @@ Public Class Main
     Dim globalgamenames = New Collection
     Dim globalextensions = New Collection
     Dim metadataDownloaded = False
+    Dim lock = New Object
+    Dim runningThreads = 0
     Declare Function joyGetPosEx Lib "winmm.dll" (ByVal uJoyID As Integer, ByRef pji As JOYINFOEX) As Integer
     Dim controller As SharpDX.XInput.Controller = New SharpDX.XInput.Controller(SharpDX.XInput.UserIndex.One)
     <StructLayout(LayoutKind.Sequential)>
@@ -110,15 +112,16 @@ Public Class Main
         For Each c In consolelist
             systemBox.Items.Add(c.getfullName())
         Next
-        systemBox.SelectedIndex = 0
-        Dim i = 2
+        Dim cacheThreads = New Collection
+        Dim i = 1
         If My.Settings.precache Then
             While i <= consolelist.Count
-                updateGames({folder, i, "", False})
+                Dim readThread = New Threading.Thread(AddressOf buildCacheBackground)
+                readThread.Start((New Object() {folder, i, "", False}))
                 i += 1
             End While
-            updateGames({folder, 1, "", False})
         End If
+        systemBox.SelectedIndex = 0
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Dim rs As New Resizer
         rs.FindAllControls(Me)
@@ -208,20 +211,26 @@ Public Class Main
             gameControlList = New Collection
             If genreBox.SelectedItem <> "All" And devBox.SelectedItem <> "All" Then
                 For Each g In gamelist
-                    If g.getGenre().trim = genref.trim And g.getDeveloper().trim = developerf.trim Then
-                        filteredgames.add(g)
+                    If g.getGenre() <> Nothing And g.getDeveloper() <> Nothing Then
+                        If g.getGenre().trim = genref.trim And g.getDeveloper().trim = developerf.trim Then
+                            filteredgames.add(g)
+                        End If
                     End If
                 Next
             ElseIf genreBox.SelectedItem <> "All" Then
                 For Each g In gamelist
-                    If g.getGenre().trim = genref.trim Then
-                        filteredgames.add(g)
+                    If g.getGenre() <> Nothing Then
+                        If g.getGenre().trim = genref.trim Then
+                            filteredgames.add(g)
+                        End If
                     End If
                 Next
             ElseIf devBox.SelectedItem <> "All" Then
                 For Each g In gamelist
-                    If g.getDeveloper().trim = developerf.trim Then
-                        filteredgames.add(g)
+                    If g.getDeveloper() <> Nothing Then
+                        If g.getDeveloper().trim = developerf.trim Then
+                            filteredgames.add(g)
+                        End If
                     End If
                 Next
             Else
@@ -340,17 +349,19 @@ Public Class Main
         Dim reparseXML = Not params(3)
         gamelist = globalgamelist.item(consolelist.Item(system).getName())
         gameControlList = globalgamenames.item(consolelist.Item(system).getName())
-        If globaldevlist.contains(consolelist.Item(system).getName()) Then
+        If IO.File.Exists(consolelist.Item(system).getGamelist) Then
             gamelistavailable = True
             developerlist = globaldevlist.item(consolelist.Item(system).getName())
             genrelist = globalgenrelist.item(consolelist.Item(system).getName())
             genreBox.InvokeIfRequired(Sub()
                                           genreBox.Enabled = True
                                           genreBox.DataSource = genrelist
+                                          genreBox.SelectedIndex = 0
                                       End Sub)
             devBox.InvokeIfRequired(Sub()
                                         devBox.Enabled = True
                                         devBox.DataSource = developerlist
+                                        devBox.SelectedIndex = 0
                                     End Sub)
             filteredgames = gamelist
         Else
@@ -390,6 +401,56 @@ Public Class Main
         End If
     End Sub
 
+    Private Sub buildCacheBackground(ByVal params)
+        runningThreads = runningThreads + 1
+        Dim romdir = params(0)
+        Dim system = params(1)
+        Dim headText = params(2)
+        Dim reparseXML = Not params(3)
+        Dim gameControlList2 = New Collection
+        Dim genrelist2 = New StringCollection()
+        Dim developerlist2 = New StringCollection()
+        genrelist2.Add("All")
+        developerlist2.Add("All")
+        If IO.File.Exists(consolelist.Item(system).getGamelist) Then
+            Dim gamelist2 = XML.readGame(consolelist.Item(system).getGamelist, consolelist.Item(system))
+            For Each g In gamelist2
+                If Not g.getGenre() Is Nothing Then
+                    If Not genrelist2.Contains(g.getGenre().trim) Then
+                        genrelist2.Add(g.getGenre().trim)
+                    End If
+                End If
+                If Not g.getDeveloper() Is Nothing Then
+                    If Not developerlist2.Contains(g.getDeveloper().trim) Then
+                        developerlist2.Add(g.getDeveloper())
+                    End If
+                End If
+                gameControlList2.Add(g.getName())
+            Next
+            SyncLock lock
+                globalgamelist.Add(gamelist2, consolelist.Item(system).getName())
+                globalgamenames.Add(gameControlList2, consolelist.Item(system).getName())
+                globalgenrelist.Add(genrelist2, consolelist.Item(system).getName())
+                globaldevlist.Add(developerlist2, consolelist.Item(system).getName())
+            End SyncLock
+        Else
+            If IO.Directory.Exists(consolelist.Item(system).getPath()) Then
+                Dim gamelist2 = New Collection
+                Dim files() As String = IO.Directory.GetFiles(consolelist.Item(system).getPath())
+                Dim id = 1
+                For Each file As String In files
+                    gameControlList2.Add(IO.Path.GetFileName(file))
+                    gamelist2.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
+                    id = id + 1
+                Next
+                SyncLock lock
+                    globalgamelist.Add(gamelist2, consolelist.Item(system).getName())
+                    globalgamenames.Add(gameControlList2, consolelist.Item(system).getName())
+                End SyncLock
+            End If
+        End If
+        runningThreads = runningThreads - 1
+    End Sub
     Private Sub updateGamesUncached(ByVal params)
         Dim romdir = params(0)
         Dim system = params(1)

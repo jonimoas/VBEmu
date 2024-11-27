@@ -55,7 +55,7 @@ Partial Class Main
         Me.gameBox.ItemHeight = 20
         Me.gameBox.Location = New System.Drawing.Point(1, 158)
         Me.gameBox.Name = "gameBox"
-        Me.gameBox.Size = New System.Drawing.Size(346, 340)
+        Me.gameBox.Size = New System.Drawing.Size(346, 360)
         Me.gameBox.Sorted = True
         Me.gameBox.TabIndex = 0
         '
@@ -68,7 +68,7 @@ Partial Class Main
         Me.description.Name = "description"
         Me.description.ReadOnly = True
         Me.description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.description.Size = New System.Drawing.Size(233, 206)
+        Me.description.Size = New System.Drawing.Size(233, 222)
         Me.description.TabIndex = 5
         '
         'systemBox
@@ -109,10 +109,10 @@ Partial Class Main
         '
         Me.ProgressBar1.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ProgressBar1.ForeColor = System.Drawing.Color.Black
-        Me.ProgressBar1.Location = New System.Drawing.Point(1, 508)
+        Me.ProgressBar1.Location = New System.Drawing.Point(1, 524)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ProgressBar1.Size = New System.Drawing.Size(505, 40)
+        Me.ProgressBar1.Size = New System.Drawing.Size(505, 24)
         Me.ProgressBar1.Step = 1
         Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.ProgressBar1.TabIndex = 10
@@ -125,9 +125,9 @@ Partial Class Main
         '
         Me.quit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.quit.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.quit.Location = New System.Drawing.Point(512, 508)
+        Me.quit.Location = New System.Drawing.Point(512, 524)
         Me.quit.Name = "quit"
-        Me.quit.Size = New System.Drawing.Size(110, 40)
+        Me.quit.Size = New System.Drawing.Size(110, 24)
         Me.quit.TabIndex = 12
         Me.quit.Text = "Exit"
         Me.quit.UseVisualStyleBackColor = True

@@ -162,6 +162,7 @@ Public Class Joysticks
         RadioButton1.Checked = My.Settings.useTGDB
         RadioButton2.Checked = Not My.Settings.useTGDB
         CheckBox5.Checked = My.Settings.useXInput
+        CheckBox3.Checked = My.Settings.freeze
         updateColors()
     End Sub
 

@@ -27,7 +27,6 @@ Public Class Main
     Dim globalextensions = New Collection
     Dim metadataDownloaded = False
     Dim lock = New Object
-    Dim runningThreads = 0
     Declare Function joyGetPosEx Lib "winmm.dll" (ByVal uJoyID As Integer, ByRef pji As JOYINFOEX) As Integer
     Dim controller As SharpDX.XInput.Controller = New SharpDX.XInput.Controller(SharpDX.XInput.UserIndex.One)
     <StructLayout(LayoutKind.Sequential)>
@@ -402,54 +401,52 @@ Public Class Main
     End Sub
 
     Private Sub buildCacheBackground(ByVal params)
-        runningThreads = runningThreads + 1
         Dim romdir = params(0)
         Dim system = params(1)
         Dim headText = params(2)
         Dim reparseXML = Not params(3)
-        Dim gameControlList2 = New Collection
-        Dim genrelist2 = New StringCollection()
-        Dim developerlist2 = New StringCollection()
-        genrelist2.Add("All")
-        developerlist2.Add("All")
+        Dim threadGameControlList = New Collection
+        Dim threadGenreList = New StringCollection()
+        Dim threadDeveloperList = New StringCollection()
+        threadGenreList.Add("All")
+        threadDeveloperList.Add("All")
         If IO.File.Exists(consolelist.Item(system).getGamelist) Then
-            Dim gamelist2 = XML.readGame(consolelist.Item(system).getGamelist, consolelist.Item(system))
-            For Each g In gamelist2
+            Dim threadGamelist = XML.readGame(consolelist.Item(system).getGamelist, consolelist.Item(system))
+            For Each g In threadGamelist
                 If Not g.getGenre() Is Nothing Then
-                    If Not genrelist2.Contains(g.getGenre().trim) Then
-                        genrelist2.Add(g.getGenre().trim)
+                    If Not threadGenreList.Contains(g.getGenre().trim) Then
+                        threadGenreList.Add(g.getGenre().trim)
                     End If
                 End If
                 If Not g.getDeveloper() Is Nothing Then
-                    If Not developerlist2.Contains(g.getDeveloper().trim) Then
-                        developerlist2.Add(g.getDeveloper())
+                    If Not threadDeveloperList.Contains(g.getDeveloper().trim) Then
+                        threadDeveloperList.Add(g.getDeveloper())
                     End If
                 End If
-                gameControlList2.Add(g.getName())
+                threadGameControlList.Add(g.getName())
             Next
             SyncLock lock
-                globalgamelist.Add(gamelist2, consolelist.Item(system).getName())
-                globalgamenames.Add(gameControlList2, consolelist.Item(system).getName())
-                globalgenrelist.Add(genrelist2, consolelist.Item(system).getName())
-                globaldevlist.Add(developerlist2, consolelist.Item(system).getName())
+                globalgamelist.Add(threadGamelist, consolelist.Item(system).getName())
+                globalgamenames.Add(threadGameControlList, consolelist.Item(system).getName())
+                globalgenrelist.Add(threadGenreList, consolelist.Item(system).getName())
+                globaldevlist.Add(threadDeveloperList, consolelist.Item(system).getName())
             End SyncLock
         Else
             If IO.Directory.Exists(consolelist.Item(system).getPath()) Then
-                Dim gamelist2 = New Collection
+                Dim threadGamelist = New Collection
                 Dim files() As String = IO.Directory.GetFiles(consolelist.Item(system).getPath())
                 Dim id = 1
                 For Each file As String In files
-                    gameControlList2.Add(IO.Path.GetFileName(file))
-                    gamelist2.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
+                    threadGameControlList.Add(IO.Path.GetFileName(file))
+                    threadGamelist.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
                     id = id + 1
                 Next
                 SyncLock lock
-                    globalgamelist.Add(gamelist2, consolelist.Item(system).getName())
-                    globalgamenames.Add(gameControlList2, consolelist.Item(system).getName())
+                    globalgamelist.Add(threadGamelist, consolelist.Item(system).getName())
+                    globalgamenames.Add(threadGameControlList, consolelist.Item(system).getName())
                 End SyncLock
             End If
         End If
-        runningThreads = runningThreads - 1
     End Sub
     Private Sub updateGamesUncached(ByVal params)
         Dim romdir = params(0)

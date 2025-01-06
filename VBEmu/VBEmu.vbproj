@@ -110,7 +110,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HTTP.vb" />
-    <Compile Include="Updaters.vb" />
+    <Compile Include="UIHelpers.vb" />
     <Compile Include="Resizer.vb" />
     <Compile Include="Extensions.vb" />
     <Compile Include="gameSystem.vb" />

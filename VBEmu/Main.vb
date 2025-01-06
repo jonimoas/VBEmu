@@ -139,14 +139,16 @@ Public Class Main
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles gameBox.SelectedIndexChanged
         metadataDownloaded = False
-        If gamelistavailable Then
-            For Each g In gamelist
-                If gameBox.SelectedItem = g.getName() Then
-                    selectedgame = g
+        For Each g In gamelist
+            If gameBox.SelectedItem = g.getName() Then
+                selectedgame = g
+                If gamelistavailable Then
                     If Not g.getDescription() Is Nothing Then
                         description.Text = g.getDescription()
+                        description.ScrollBars = ScrollBars.Vertical
                     Else
                         description.Text = Nothing
+                        description.ScrollBars = ScrollBars.None
                     End If
                     cover.Image = cover.ErrorImage
                     If Not g.getImage() Is Nothing Then
@@ -154,25 +156,10 @@ Public Class Main
                     Else
                         cover.Image = cover.ErrorImage
                     End If
-                    Exit For
                 End If
-            Next
-        Else
-            For Each g In gamelist
-                If gameBox.SelectedItem = g.getName() Then
-                    selectedgame = g
-                    Exit For
-                End If
-            Next
-            description.Text = Nothing
-
-            cover.Image = cover.ErrorImage
-        End If
-        If selectedgame.getDescription() Is Nothing Then
-            description.ScrollBars = ScrollBars.None
-        Else
-            description.ScrollBars = ScrollBars.Vertical
-        End If
+                Exit For
+            End If
+        Next
         updateColors()
     End Sub
 
@@ -202,68 +189,16 @@ Public Class Main
         TextBox1.Text = ""
     End Sub
 
-    Private Sub filter(ByVal genref, ByVal developerf)
+    Private Sub FilterChange(sender As Object, e As EventArgs) Handles genreBox.SelectedIndexChanged, devBox.SelectedIndexChanged
         metadataDownloaded = False
-        If gamelistavailable Then
-            gameControlList.Clear()
-            filteredgames = New Collection
-            gameControlList = New Collection
-            If genreBox.SelectedItem <> "All" And devBox.SelectedItem <> "All" Then
-                For Each g In gamelist
-                    If g.getGenre() <> Nothing And g.getDeveloper() <> Nothing Then
-                        If g.getGenre().trim = genref.trim And g.getDeveloper().trim = developerf.trim Then
-                            filteredgames.add(g)
-                        End If
-                    End If
-                Next
-            ElseIf genreBox.SelectedItem <> "All" Then
-                For Each g In gamelist
-                    If g.getGenre() <> Nothing Then
-                        If g.getGenre().trim = genref.trim Then
-                            filteredgames.add(g)
-                        End If
-                    End If
-                Next
-            ElseIf devBox.SelectedItem <> "All" Then
-                For Each g In gamelist
-                    If g.getDeveloper() <> Nothing Then
-                        If g.getDeveloper().trim = developerf.trim Then
-                            filteredgames.add(g)
-                        End If
-                    End If
-                Next
-            Else
-                filteredgames = gamelist
-            End If
-            For Each g In filteredgames
-                gameControlList.Add(g.getName())
-            Next
-            gameBox.DataSource = gameControlList
-        End If
-    End Sub
-
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles genreBox.SelectedIndexChanged
-        metadataDownloaded = False
-        filteredgames = New Collection
         Try
             TextBox1.Text = ""
-            filter(genreBox.SelectedItem.trim, devBox.SelectedItem.trim)
+            gameBox.DataSource = UIHelpers.filter(genreBox.SelectedItem.trim, devBox.SelectedItem.trim, gamelist)
         Catch
             Return
         End Try
     End Sub
 
-    Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles devBox.SelectedIndexChanged
-        metadataDownloaded = False
-        filteredgames = New Collection
-        Try
-            TextBox1.Text = ""
-            filter(genreBox.SelectedItem.trim, devBox.SelectedItem.trim)
-        Catch
-            Return
-        End Try
-
-    End Sub
 
     Private Sub SaveFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles saveScript.FileOk
         Try

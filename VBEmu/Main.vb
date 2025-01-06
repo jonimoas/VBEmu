@@ -474,59 +474,24 @@ Public Class Main
                                                   ProgressBar1.PerformStep()
                                               End Sub)
             Next
-            genreBox.InvokeIfRequired(Sub()
-                                          genreBox.Enabled = True
-                                          genreBox.DataSource = genrelist
-                                      End Sub)
-            devBox.InvokeIfRequired(Sub()
-                                        devBox.Enabled = True
-                                        devBox.DataSource = developerlist
-                                    End Sub)
             gamelistavailable = True
             filteredgames = gamelist
-            gameBox.InvokeIfRequired(Sub()
-                                         gameBox.DataSource = gameControlList
-                                     End Sub)
-            If Not My.Settings.precache Then
-                gameBox.InvokeIfRequired(Sub()
-                                             gameBox.SelectedIndex = 0
-                                         End Sub)
-            End If
-
         Else
             generatePlaceHolders(romdir)
-
         End If
         performCache(system)
     End Sub
 
     Private Sub generatePlaceHolders(ByVal romdir)
-        genreBox.InvokeIfRequired(Sub()
-                                      genreBox.Enabled = False
-                                  End Sub)
-        devBox.InvokeIfRequired(Sub()
-                                    devBox.Enabled = False
-                                End Sub)
         gamelistavailable = False
         Try
             Dim files() As String = IO.Directory.GetFiles(romdir)
-
-
             Dim id = 1
             For Each file As String In files
                 gameControlList.Add(IO.Path.GetFileName(file))
                 gamelist.Add(New Game("./" + IO.Path.GetFileName(file), IO.Path.GetFileName(file), "", "", "", "", id))
                 id = id + 1
             Next
-            cover.InvokeIfRequired(Sub()
-                                       cover.ImageLocation = vbNull
-                                   End Sub)
-            description.InvokeIfRequired(Sub()
-                                             description.Text = ""
-                                         End Sub)
-            gameBox.InvokeIfRequired(Sub()
-                                         gameBox.DataSource = gameControlList
-                                     End Sub)
         Catch
             Return
         End Try
@@ -565,11 +530,10 @@ Public Class Main
         developerlist = New StringCollection()
         genrelist.Add("All")
         developerlist.Add("All")
-        If globalgamelist.Contains(consolelist.Item(system).getName()) And Not reparseXML Then
-            updateGamesCached(params)
-        Else
+        If Not globalgamelist.Contains(consolelist.Item(system).getName()) Or reparseXML Then
             updateGamesUncached(params)
         End If
+        updateGamesCached(params)
         Me.ResumeLayout()
         Return 0
     End Function

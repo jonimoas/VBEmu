@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|C:\\Users\\User\\Documents\\GitHub\\VBEmu\\vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|C:\\Users\\User\\Documents\\GitHub\\VBEmu\\vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|c:\\users\\user\\documents\\github\\vbemu\\vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\main.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|c:\\users\\user\\documents\\github\\vbemu\\vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|solutionrelative:vbemu\\joysticks.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{95F0AAFD-E52F-4E07-9346-6443AAD4D9E8}|VBEmu\\VBEmu.vbproj|C:\\Users\\User\\Documents\\GitHub\\VBEmu\\vbemu\\updaters.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
@@ -145,13 +145,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Joysticks.vb",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Joysticks.vb",
               "RelativeDocumentMoniker": "VBEmu\\Joysticks.vb",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Joysticks.vb",
               "RelativeToolTip": "VBEmu\\Joysticks.vb",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAwwJkAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJkAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-07-31T18:01:03.215Z",
               "EditorCaption": ""
@@ -170,13 +170,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Main.vb",
               "DocumentMoniker": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Main.vb",
               "RelativeDocumentMoniker": "VBEmu\\Main.vb",
               "ToolTip": "C:\\Users\\User\\Documents\\GitHub\\VBEmu\\VBEmu\\Main.vb",
               "RelativeToolTip": "VBEmu\\Main.vb",
-              "ViewState": "AgIAAGQCAAAAAAAAAAAQwLUBAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAKkCAAAAAAAAAAAiwN8BAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-07-31T17:36:28.719Z",
               "EditorCaption": ""
